@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>kmeans.ai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: system-ui, sans-serif;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+
+    .center-label {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      letter-spacing: 0.22em;
+      text-transform: lowercase;
+      color: #e5e7eb;
+      pointer-events: none;
+      mix-blend-mode: lighten;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="clusterViz"></canvas>
+
+  <div class="center-label">kmeans.ai</div>
+
+  <script>
+    const canvas = document.getElementById("clusterViz");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const CLUSTER_COUNT = 5;
+    const POINT_COUNT = 220;
+
+    const centroids = [];
+    const points = [];
+
+    function rand(min, max) { return min + Math.random() * (max - min); }
+
+    function init() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const cx = width / 2;
+      const cy = height / 2;
+      const radius = Math.min(width, height) * 0.34;
+
+      centroids.length = 0;
+      points.length = 0;
+
+      for (let i = 0; i < CLUSTER_COUNT; i++) {
+        const angle = (i / CLUSTER_COUNT) * Math.PI * 2 + rand(-0.3, 0.3);
+        const r = radius * rand(0.65, 1);
+
+        centroids.push({
+          x: cx + Math.cos(angle) * r,
+          y: cy + Math.sin(angle) * r,
+          baseAngle: angle,
+          orbitRadius: r,
+          orbitSpeed: rand(0.03, 0.07) * (Math.random() < 0.5 ? -1 : 1),
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+
+      for (let i = 0; i < POINT_COUNT; i++) {
+        const cIndex = Math.floor(Math.random() * CLUSTER_COUNT);
+        const jitterR = rand(20, radius * 0.65);
+        const jitterA = rand(0, Math.PI * 2);
+
+        points.push({
+          x: cx + rand(-radius, radius),
+          y: cy + rand(-radius, radius),
+          vx: 0,
+          vy: 0,
+          cluster: cIndex,
+          offsetR: jitterR,
+          offsetA: jitterA,
+          noisePhase: Math.random() * Math.PI * 2,
+          noiseSpeed: rand(0.4, 0.9)
+        });
+      }
+    }
+
+    init();
+    window.addEventListener("resize", init);
+
+    let lastTime = performance.now();
+
+    function drawFrame(timestamp) {
+      const dt = Math.min((timestamp - lastTime) / 1000, 0.033);
+      lastTime = timestamp;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      centroids.forEach(c => {
+        c.phase += c.orbitSpeed * dt;
+        const wobble = 1 + 0.04 * Math.sin(c.phase * 1.7);
+        c.x = cx + Math.cos(c.baseAngle + c.phase * 0.3) * c.orbitRadius * wobble;
+        c.y = cy + Math.sin(c.baseAngle + c.phase * 0.3) * c.orbitRadius * wobble;
+      });
+
+      points.forEach(p => {
+        const c = centroids[p.cluster];
+
+        const baseTx = c.x + Math.cos(p.offsetA) * p.offsetR;
+        const baseTy = c.y + Math.sin(p.offsetA) * p.offsetR;
+
+        p.noisePhase += p.noiseSpeed * dt;
+        const nx = Math.cos(p.noisePhase * 1.3) * 6;
+        const ny = Math.sin(p.noisePhase * 1.9) * 6;
+
+        const tx = baseTx + nx;
+        const ty = baseTy + ny;
+
+        const ax = (tx - p.x) * 0.9;
+        const ay = (ty - p.y) * 0.9;
+
+        p.vx += ax * dt;
+        p.vy += ay * dt;
+
+        p.vx *= 0.82;
+        p.vy *= 0.82;
+
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+      });
+
+      points.forEach(p => {
+        ctx.fillStyle = "rgba(255,255,255,0.7)";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      centroids.forEach(c => {
+        const pulse = 1 + 0.15 * Math.sin((timestamp / 400) + c.phase);
+        const innerR = 4 * pulse;
+        const outerR = 11 * pulse;
+
+        const cg = ctx.createRadialGradient(c.x, c.y, innerR, c.x, c.y, outerR);
+        cg.addColorStop(0, "rgba(255,255,255,0.9)");
+        cg.addColorStop(1, "rgba(255,255,255,0.0)");
+        ctx.fillStyle = cg;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, outerR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, innerR * 0.55, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawFrame);
+    }
+
+    requestAnimationFrame(drawFrame);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
 
