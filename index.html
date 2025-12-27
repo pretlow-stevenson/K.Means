@@ -5,7 +5,7 @@
   <title>K MEANS LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
       height: 100%;
       background: radial-gradient(circle at top, #1a1a1a 0%, #0d0d0d 60%, #000 100%);
       overflow: hidden;
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     .hero {
@@ -22,6 +22,7 @@
       width: 100%;
       height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
@@ -44,29 +45,256 @@
       position: absolute;
       z-index: 20;
       font-size: 14px;
-      font-weight: 100;
-      letter-spacing: 0.08em;
+      font-weight: 200;
+      letter-spacing: 0.12em;
       color: #e5e5e5;
       pointer-events: none;
+      text-transform: uppercase;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 30;
+      margin-top: 480px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .loom-link {
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      cursor: pointer;
+      transition: color 0.4s ease, letter-spacing 0.4s ease, transform 0.4s ease;
+    }
+
+    .loom-link:hover {
+      color: #ffffff;
+      letter-spacing: 0.45em;
+      transform: translateY(-1px);
+    }
+
+    .brand-tagline {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      pointer-events: none;
+      font-style: italic; /* Added italics for a snazzier signature feel */
+    }
+
+    /* POPUP OVERLAY */
+    #infoPopup {
+      opacity: 0;
+      visibility: hidden;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(25px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #infoPopup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* POPUP CONTENT BOX */
+    .popup-content {
+      background: linear-gradient(145deg, #0a0a0a 0%, #050505 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 60px;
+      max-width: 850px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      color: #999;
+      line-height: 1.8;
+      position: relative;
+      transform: scale(0.98) translateY(10px);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+
+    .popup-content::-webkit-scrollbar { width: 2px; }
+    .popup-content::-webkit-scrollbar-track { background: transparent; }
+    .popup-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+    #infoPopup.active .popup-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .close-btn {
+      position: sticky;
+      float: right;
+      top: -20px;
+      right: -20px;
+      color: rgba(255,255,255,0.2);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      transition: color 0.3s;
+      z-index: 110;
+      padding: 10px;
+    }
+
+    .close-btn:hover { color: #fff; }
+
+    /* REFINED TYPOGRAPHY FOR POPUP */
+    .popup-content h2.main-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .popup-content .subtitle {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 300;
+    }
+
+    .popup-content h3 {
+      font-family: 'Bodoni Moda', serif;
+      font-weight: 400;
+      font-style: italic;
+      color: #fff;
+      margin: 45px 0 20px 0;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      border-left: 1px solid rgba(255,255,255,0.2);
+      padding-left: 20px;
+    }
+
+    .popup-content p {
+      margin-bottom: 25px;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .popup-content strong {
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .popup-content ul {
+      margin-bottom: 35px;
+      list-style: none;
+    }
+
+    .popup-content li {
+      margin-bottom: 18px;
+      font-size: 14px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    /* Snazzy Custom Bullet */
+    .popup-content li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 12px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .popup-content li strong {
+      display: block; /* Moves the label above the text for cleaner scanning */
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      color: rgba(255,255,255,0.6);
     }
   </style>
 </head>
 
 <body>
   <div class="hero">
-
-    <!-- Only text on the entire page -->
     <div class="center-label">KMEANS.AI | K MEANS LLC</div>
 
     <div class="viz-wrapper">
       <canvas id="radialViz"></canvas>
     </div>
 
+    <div class="footer-content">
+      <a class="loom-link" id="openPopup">LOOM™ LINGUISTIC BRIDGE</a>
+      <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</span>
+    </div>
+  </div>
+
+  <div id="infoPopup">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">ESC / CLOSE</span>
+      
+      <h2 class="main-title">Loom™</h2>
+      <span class="subtitle">A Protocol for Cross-Model Consensus</span>
+
+      <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
+
+      <h3>The Interoperability Layer</h3>
+      <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
+
+      <ul>
+        <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.</li>
+        <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
+        <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
+      </ul>
+
+      <h3>Collective Intelligence via Consensus Formation</h3>
+      <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity outputs.</p>
+
+      <ul>
+        <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
+        <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
+        <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
+      </ul>
+
+      <p style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
+        Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a measurable increase in robustness and cognitive diversity.
+      </p>
+    </div>
   </div>
 
   <script>
     const canvas = document.getElementById("radialViz");
     const ctx = canvas.getContext("2d");
+    let mouse = { x: 0, y: 0, active: false };
+
+    const popup = document.getElementById("infoPopup");
+    const openBtn = document.getElementById("openPopup");
+    const closeBtn = document.getElementById("closePopup");
+
+    openBtn.onclick = () => popup.classList.add("active");
+    closeBtn.onclick = () => popup.classList.remove("active");
+    window.onclick = (e) => { if(e.target == popup) popup.classList.remove("active"); };
+
+    // Escape key to close
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") popup.classList.remove("active");
+    });
 
     function resizeCanvas() {
       const rect = canvas.getBoundingClientRect();
@@ -88,6 +316,15 @@
     window.addEventListener("resize", positionCenterLabel);
     positionCenterLabel();
 
+    window.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouse.x = e.clientX - cx;
+      mouse.y = e.clientY - cy;
+      mouse.active = true;
+    });
+
     const BAR_COUNT = 64;
     const INNER_RADIUS = 90;
     const OUTER_RADIUS = 260;
@@ -104,37 +341,35 @@
     function drawFrame(timestamp) {
       const dt = (timestamp - lastTime) / 1000;
       lastTime = timestamp;
-
       const { width, height } = canvas.getBoundingClientRect();
       const cx = width / 2;
       const cy = height / 2;
-
       ctx.clearRect(0, 0, width, height);
-
       ctx.save();
       ctx.translate(cx, cy);
-
       for (let i = 0; i < BAR_COUNT; i++) {
         const bar = bars[i];
         bar.phase += bar.speed * dt;
-
         const angle = (i / BAR_COUNT) * Math.PI * 2;
         const noise = 0.5 + 0.5 * Math.sin(bar.phase + i * 0.2);
-        const intensity = bar.base + noise * 0.5;
-
+        let interaction = 0;
+        if (mouse.active) {
+          const targetX = (INNER_RADIUS + 120) * Math.cos(angle);
+          const targetY = (INNER_RADIUS + 120) * Math.sin(angle);
+          const dist = Math.hypot(targetX - mouse.x, targetY - mouse.y);
+          interaction = Math.max(0, 1 - dist / 220) * 0.4;
+        }
+        const intensity = bar.base + (noise * 0.5) + interaction;
         const radiusStart = INNER_RADIUS;
         const radiusEnd = INNER_RADIUS + (OUTER_RADIUS - INNER_RADIUS) * intensity;
-
         const x0 = radiusStart * Math.cos(angle);
         const y0 = radiusStart * Math.sin(angle);
         const x1 = radiusEnd * Math.cos(angle);
         const y1 = radiusEnd * Math.sin(angle);
-
         const grad = ctx.createLinearGradient(x0, y0, x1, y1);
         grad.addColorStop(0, "rgba(255, 255, 255, 0.0)");
         grad.addColorStop(0.25, "rgba(200, 200, 200, 0.25)");
-        grad.addColorStop(1, "rgba(255, 255, 255, 0.9)");
-
+        grad.addColorStop(1, `rgba(255, 255, 255, ${Math.min(0.9 + interaction, 1)})`);
         ctx.strokeStyle = grad;
         ctx.lineWidth = 2.1;
         ctx.beginPath();
@@ -142,16 +377,13 @@
         ctx.lineTo(x1, y1);
         ctx.stroke();
       }
-
       ctx.fillStyle = "#000";
       ctx.beginPath();
       ctx.arc(0, 0, CENTER_PULSE_RADIUS, 0, Math.PI * 2);
       ctx.fill();
-
       ctx.restore();
       requestAnimationFrame(drawFrame);
     }
-
     requestAnimationFrame(drawFrame);
   </script>
 </body>
