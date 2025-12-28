@@ -1,273 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>K MEANS LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%; background: radial-gradient(circle at top, #1a1a1a 0%, #0d0d0d 60%, #000 100%);
-      overflow: hidden; font-family: "Inter", -apple-system, system-ui, sans-serif; touch-action: none; color: #999;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .hero { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .viz-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 5; }
-    canvas { width: min(85vmin, 900px); height: min(85vmin, 900px); }
+
+    html,
+    body {
+      height: 100%;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0d0d0d 60%, #000 100%);
+      overflow: hidden;
+      font-family: "Inter", -apple-system, system-ui, sans-serif;
+      touch-action: none;
+      color: #999;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viz-wrapper {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    canvas {
+      width: min(85vmin, 900px);
+      height: min(85vmin, 900px);
+    }
 
     .center-label {
-      position: absolute; z-index: 20; font-size: clamp(10px, 2vw, 14px); font-weight: 200; letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.4); text-transform: uppercase; cursor: pointer; padding: 20px; transition: color 0.5s, text-shadow 0.5s;
+      position: absolute;
+      z-index: 20;
+      font-size: clamp(10px, 2vw, 14px);
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 20px;
+      transition: color 0.5s, text-shadow 0.5s;
     }
-    .center-label:hover { color: rgba(255, 255, 255, 1); text-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
 
-    .footer-content { position: relative; z-index: 30; margin-top: 65vh; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 0 20px; }
-    .loom-link { color: rgba(255, 255, 255, 0.4); text-decoration: none; font-size: 11px; font-weight: 300; letter-spacing: 0.35em; cursor: pointer; transition: 0.4s; }
-    .loom-link:hover { color: #fff; letter-spacing: 0.45em; transform: translateY(-1px); }
-    .brand-tagline { color: rgba(255, 255, 255, 0.2); font-size: 9px; font-weight: 200; letter-spacing: 0.12em; font-style: italic; max-width: 320px; line-height: 1.5; pointer-events: none; }
+    .center-label:hover {
+      color: rgba(255, 255, 255, 1);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 30;
+      margin-top: 65vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .loom-link {
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .loom-link:hover {
+      color: #fff;
+      letter-spacing: 0.45em;
+      transform: translateY(-1px);
+    }
+
+    .brand-tagline {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 9px;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      font-style: italic;
+      max-width: 320px;
+      line-height: 1.5;
+      pointer-events: none;
+    }
 
     /* POPUP SYSTEM */
     #infoPopup {
-      opacity: 0; visibility: hidden; position: fixed; inset: 0; z-index: 100;
-      background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(25px); display: flex;
-      align-items: center; justify-content: center; padding: 20px; transition: 0.6s;
+      opacity: 0;
+      visibility: hidden;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(25px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: 0.6s;
     }
-    #infoPopup.active { opacity: 1; visibility: visible; }
+
+    #infoPopup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .popup-content {
-      background: #050505; border: 1px solid rgba(255,255,255,0.05); padding: clamp(30px, 5vw, 60px);
-      max-width: 850px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; transform: scale(0.98); transition: 0.6s;
+      background: #050505;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: clamp(30px, 5vw, 60px);
+      max-width: 850px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.98);
+      transition: 0.6s;
     }
-    #infoPopup.active .popup-content { transform: scale(1); }
-    .close-btn { position: sticky; float: right; top: -10px; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 10px; letter-spacing: 0.2em; z-index: 110; padding: 10px; }
-    .popup-content h2.main-title { font-family: 'Bodoni Moda', serif; font-size: 32px; color: #fff; text-align: center; margin-bottom: 5px; }
-    .popup-content .subtitle { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 40px; }
-    .popup-content h3 { font-family: 'Bodoni Moda', serif; font-style: italic; color: #fff; margin: 40px 0 15px; font-size: 18px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 15px; }
-    .popup-content p { margin-bottom: 1.5em; line-height: 1.8; font-size: 14px; font-weight: 300; }
-    .popup-content strong { color: #fff; font-weight: 400; }
-    .popup-content ul { margin-bottom: 30px; list-style: none; }
-    .popup-content li { margin-bottom: 18px; font-size: 13px; padding-left: 25px; position: relative; }
-    .popup-content li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 1px; background: rgba(255,255,255,0.3); }
+
+    #infoPopup.active .popup-content {
+      transform: scale(1);
+    }
+
+    .close-btn {
+      position: sticky;
+      float: right;
+      top: -10px;
+      color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      z-index: 110;
+      padding: 10px;
+    }
+
+    .popup-content h2.main-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 32px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .popup-content .subtitle {
+      display: block;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(255, 255, 255, 0.4);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .popup-content h3 {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      color: #fff;
+      margin: 40px 0 15px;
+      font-size: 18px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 15px;
+    }
+
+    .popup-content p {
+      margin-bottom: 1.5em;
+      line-height: 1.8;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .popup-content strong {
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .popup-content ul {
+      margin-bottom: 30px;
+      list-style: none;
+    }
+
+    .popup-content li {
+      margin-bottom: 18px;
+      font-size: 13px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .popup-content li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 10px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+    }
 
     /* ACCENT SECTION */
-    .accent-section { margin-top: 50px; padding-top: 30px; border-top: 1px dashed rgba(255,255,255,0.1); }
-    .demo-link { 
-      display: block; color: #ccc; text-decoration: none; font-size: 13px; margin-bottom: 20px; 
-      padding: 15px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.01); transition: 0.3s;
+    .accent-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
     }
-    .demo-link:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #fff; }
-    .demo-link strong { color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+
+    .demo-link {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.01);
+      transition: 0.3s;
+    }
+
+    .demo-link:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .demo-link strong {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 4px;
+    }
 
     /* VIDEO MODAL */
     #videoModal {
-      display: none; position: fixed; inset: 0; z-index: 200; background: #000;
-      align-items: center; justify-content: center;
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #000;
+      align-items: center;
+      justify-content: center;
     }
-    #videoModal.active { display: flex; }
-    .video-container { width: 90%; max-width: 1000px; aspect-ratio: 16/9; position: relative; }
-    #videoModal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .video-close { position: absolute; top: -40px; right: 0; color: #666; cursor: pointer; font-size: 12px; letter-spacing: 0.2em; }
-    .video-close:hover { color: #fff; }
 
-    #manifestoTemplate, #loomTemplate { display: none; }
+    #videoModal.active {
+      display: flex;
+    }
+
+    .video-container {
+      width: 90%;
+      max-width: 1000px;
+      aspect-ratio: 16/9;
+      position: relative;
+    }
+
+    #videoModal iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #666;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+    }
+
+    .video-close:hover {
+      color: #fff;
+    }
+
+    #manifestoTemplate,
+    #loomTemplate {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <div class="center-label" id="openManifesto">KMEANS.AI | K MEANS LLC</div>
-  <div class="viz-wrapper"><canvas id="radialViz"></canvas></div>
-  <div class="footer-content">
-    <a class="loom-link" id="openLoom">LOOM™ LINGUISTIC BRIDGE</a>
-    <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</span>
+  <div class="hero">
+    <div class="center-label" id="openManifesto">KMEANS.AI | K MEANS LLC</div>
+    <div class="viz-wrapper"><canvas id="radialViz"></canvas></div>
+    <div class="footer-content">
+      <a class="loom-link" id="openLoom">LOOM™ LINGUISTIC BRIDGE</a>
+      <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</span>
+    </div>
   </div>
-</div>
 
-<div id="infoPopup">
-  <div class="popup-content">
-    <span class="close-btn" id="closePopup">ESC / CLOSE</span>
-    <div id="popupBody"></div>
+  <div id="infoPopup">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">ESC / CLOSE</span>
+      <div id="popupBody"></div>
+    </div>
   </div>
-</div>
 
-<div id="videoModal">
-  <div class="video-container">
-    <span class="video-close" id="closeVideo">CLOSE PLAYER</span>
-    <div id="playerFrame"></div>
+  <div id="videoModal">
+    <div class="video-container">
+      <span class="video-close" id="closeVideo">CLOSE PLAYER</span>
+      <div id="playerFrame"></div>
+    </div>
   </div>
-</div>
 
-<div id="manifestoTemplate">
+  <div id="manifestoTemplate">
     <h2 class="main-title">01 // Origin</h2>
     <span class="subtitle">K MEANS LLC // ARCHITECTURAL R&D</span>
-    <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who prioritize architectural elegance over bloat.</p>
-    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent, and a minimalist's obsession with efficiency.</p>
+    <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke
+      solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who
+      prioritize architectural elegance over bloat.</p>
+    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next
+      breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent,
+      and a minimalist's obsession with efficiency.</p>
     <h3>The Collective Conviction</h3>
-    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on weaving these disparate threads into a singular, resilient cognitive layer.</p>
-    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from siloed inference to a distributed, collaborative intelligence substrate.</p>
+    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning
+        Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on
+      weaving these disparate threads into a singular, resilient cognitive layer.</p>
+    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from
+      siloed inference to a distributed, collaborative intelligence substrate.</p>
     <h3>Architectural Integrity</h3>
-    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We believe that as models move from simple generators to autonomous reasoners, the safety layer must be architectural, not just a post-hoc filter.</p>
-    <p>At K Means, we ensure that ethical guardrails and operational stability are woven directly into the core logic of our systems, defining the next decade of enterprise and scientific computing.</p>
+    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We
+      believe that as models move from simple generators to autonomous reasoners, the safety layer must be
+      architectural, not just a post-hoc filter.</p>
+    <p>At K Means, we ensure that ethical guardrails and operational stability are woven directly into the core logic of
+      our systems, defining the next decade of enterprise and scientific computing.</p>
   </div>
 
-<div id="loomTemplate">
-      <h2 class="main-title">Loom™</h2>
-      <span class="subtitle">A Protocol for Cross-Model Consensus</span>
+  <div id="loomTemplate">
+    <h2 class="main-title">Loom™</h2>
+    <span class="subtitle">A Protocol for Cross-Model Consensus</span>
 
-      <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning.
+      <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational
+        substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
 
-      <h3>The Interoperability Layer</h3>
-      <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
+    <h3>The Interoperability Layer</h3>
+    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API
+      structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
 
-      <ul>
-        <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.</li>
-        <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
-        <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
-      </ul>
+    <ul>
+      <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.
+      </li>
+      <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context
+        object. This ensures every model is contextually aware of the full conversational state.</li>
+      <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize
+        latency while maximizing the semantic density.</li>
+    </ul>
 
-      <h3>Collective Intelligence via Consensus Formation</h3>
-      <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity outputs.</p>
+    <h3>Collective Intelligence via Consensus Formation</h3>
+    <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative
+        reasoning</strong> between models to generate high-fidelity outputs.</p>
 
-      <ul>
-        <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
-        <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
-        <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
-      </ul>
+    <ul>
+      <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal
+        diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
+      <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the
+        system generates a reliability metric.</li>
+      <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse
+        inductive biases to eliminate hallucinations.</li>
+    </ul>
 
-      <p style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
-        Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a measurable increase in robustness and cognitive diversity.
-      </p>
-  <div class="accent-section">
-    <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
-    
-    <a href="#" class="demo-link" data-video="http://youtube">
-      <strong>[Demo 01: Consensus Formation]</strong>
-      Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
-    </a>
+    <div class="accent-section">
+      <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
 
-    <a href="#" class="demo-link" data-video="http://youtube">
-      <strong>[Demo 02: Adversarial Reasoning]</strong>
-      A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in scientific theory.
-    </a>
+      <a href="#" class="demo-link" data-video="http://youtube">
+        <strong>[Demo 01: Consensus Formation]</strong>
+        Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
+      </a>
 
-    <a href="#" class="demo-link" data-video="http://youtube">
-      <strong>[Demo 03: Formalized Logic]</strong>
-      Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable mathematical framework.
-    </a>
+      <a href="#" class="demo-link" data-video="http://youtube">
+        <strong>[Demo 02: Adversarial Reasoning]</strong>
+        A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in
+        scientific theory.
+      </a>
+
+      <a href="#" class="demo-link" data-video="http://youtube">
+        <strong>[Demo 03: Formalized Logic]</strong>
+        Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable
+        mathematical framework.
+      </a>
+    </div>
+
+    <p
+      style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
+      Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a
+      measurable increase in robustness and cognitive diversity.
+    </p>
   </div>
-</div>
 
-<script>
-  const canvas = document.getElementById("radialViz");
-  const ctx = canvas.getContext("2d");
-  let mouse = { x: 0, y: 0, active: false };
+  <script>
+    const canvas = document.getElementById("radialViz");
+    const ctx = canvas.getContext("2d");
+    let mouse = { x: 0, y: 0, active: false };
 
-  const popup = document.getElementById("infoPopup");
-  const popupBody = document.getElementById("popupBody");
-  const videoModal = document.getElementById("videoModal");
-  const playerFrame = document.getElementById("playerFrame");
+    const popup = document.getElementById("infoPopup");
+    const popupBody = document.getElementById("popupBody");
+    const videoModal = document.getElementById("videoModal");
+    const playerFrame = document.getElementById("playerFrame");
 
-  function openPopup(contentId) {
-    popupBody.innerHTML = document.getElementById(contentId).innerHTML;
-    popup.classList.add("active");
-    if (contentId === 'loomTemplate') attachVideoListeners();
-  }
+    function openPopup(contentId) {
+      popupBody.innerHTML = document.getElementById(contentId).innerHTML;
+      popup.classList.add("active");
+      if (contentId === 'loomTemplate') attachVideoListeners();
+    }
 
-  function attachVideoListeners() {
-    popupBody.querySelectorAll('.demo-link').forEach(link => {
-      link.onclick = (e) => {
-        e.preventDefault();
-        const vidUrl = link.getAttribute('data-video').replace('watch?v=', 'embed/');
-        playerFrame.innerHTML = `<iframe src="${vidUrl}" allow="autoplay; fullscreen"></iframe>`;
-        videoModal.classList.add("active");
+    function attachVideoListeners() {
+      popupBody.querySelectorAll('.demo-link').forEach(link => {
+        link.onclick = (e) => {
+          e.preventDefault();
+          const vidUrl = link.getAttribute('data-video').replace('watch?v=', 'embed/');
+          playerFrame.innerHTML = `<iframe src="${vidUrl}" allow="autoplay; fullscreen"></iframe>`;
+          videoModal.classList.add("active");
+        }
+      });
+    }
+
+    document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
+    document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
+    document.getElementById("closePopup").onclick = () => popup.classList.remove("active");
+    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        videoModal.classList.remove("active");
+        playerFrame.innerHTML = "";
+        popup.classList.remove("active");
       }
     });
-  }
 
-  document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
-  document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
-  document.getElementById("closePopup").onclick = () => popup.classList.remove("active");
-  document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
+    function getRadii(w) { return { inner: w * 0.12, outer: w * 0.34, center: w * 0.022 }; }
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") { 
-      videoModal.classList.remove("active"); 
-      playerFrame.innerHTML = ""; 
-      popup.classList.remove("active"); 
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const label = document.querySelector(".center-label");
+      label.style.left = (rect.left + rect.width / 2) + "px";
+      label.style.top = (rect.top + rect.height / 2) + "px";
+      label.style.transform = "translate(-50%, -50%)";
     }
-  });
+    window.addEventListener("resize", resize);
+    resize();
 
-  function getRadii(w) { return { inner: w * 0.12, outer: w * 0.34, center: w * 0.022 }; }
+    window.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - (rect.left + rect.width / 2);
+      mouse.y = e.clientY - (rect.top + rect.height / 2);
+      mouse.active = true;
+    });
 
-  function resize() {
-    const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const BAR_COUNT = 64;
+    const bars = Array.from({ length: BAR_COUNT }, () => ({
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.4 + Math.random() * 0.4,
+      base: 0.35 + Math.random() * 0.25
+    }));
 
-    const label = document.querySelector(".center-label");
-    label.style.left = (rect.left + rect.width / 2) + "px";
-    label.style.top = (rect.top + rect.height / 2) + "px";
-    label.style.transform = "translate(-50%, -50%)";
-  }
-  window.addEventListener("resize", resize);
-  resize();
-
-  window.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - (rect.left + rect.width / 2);
-    mouse.y = e.clientY - (rect.top + rect.height / 2);
-    mouse.active = true;
-  });
-
-  const BAR_COUNT = 64;
-  const bars = Array.from({ length: BAR_COUNT }, () => ({
-    phase: Math.random() * Math.PI * 2,
-    speed: 0.4 + Math.random() * 0.4,
-    base: 0.35 + Math.random() * 0.25
-  }));
-
-  let lastTime = performance.now();
-  function draw(timestamp) {
-    const dt = (timestamp - lastTime) / 1000;
-    lastTime = timestamp;
-    const w = canvas.width / (window.devicePixelRatio || 1);
-    const h = canvas.height / (window.devicePixelRatio || 1);
-    const r = getRadii(w);
-    ctx.clearRect(0, 0, w, h);
-    ctx.save();
-    ctx.translate(w / 2, h / 2);
-    for (let i = 0; i < BAR_COUNT; i++) {
-      const b = bars[i];
-      b.phase += b.speed * dt;
-      const angle = (i / BAR_COUNT) * Math.PI * 2;
-      const noise = 0.5 + 0.5 * Math.sin(b.phase + i * 0.2);
-      let inter = 0;
-      if (mouse.active) {
-        const tx = (r.inner + (w * 0.15)) * Math.cos(angle);
-        const ty = (r.inner + (w * 0.15)) * Math.sin(angle);
-        const d = Math.hypot(tx - mouse.x, ty - mouse.y);
-        inter = Math.max(0, 1 - d / (w * 0.3)) * 0.4;
+    let lastTime = performance.now();
+    function draw(timestamp) {
+      const dt = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+      const w = canvas.width / (window.devicePixelRatio || 1);
+      const h = canvas.height / (window.devicePixelRatio || 1);
+      const r = getRadii(w);
+      ctx.clearRect(0, 0, w, h);
+      ctx.save();
+      ctx.translate(w / 2, h / 2);
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const b = bars[i];
+        b.phase += b.speed * dt;
+        const angle = (i / BAR_COUNT) * Math.PI * 2;
+        const noise = 0.5 + 0.5 * Math.sin(b.phase + i * 0.2);
+        let inter = 0;
+        if (mouse.active) {
+          const tx = (r.inner + (w * 0.15)) * Math.cos(angle);
+          const ty = (r.inner + (w * 0.15)) * Math.sin(angle);
+          const d = Math.hypot(tx - mouse.x, ty - mouse.y);
+          inter = Math.max(0, 1 - d / (w * 0.3)) * 0.4;
+        }
+        const intensity = b.base + (noise * 0.5) + inter;
+        const r0 = r.inner;
+        const r1 = r.inner + (r.outer - r.inner) * intensity;
+        const x0 = r0 * Math.cos(angle), y0 = r0 * Math.sin(angle);
+        const x1 = r1 * Math.cos(angle), y1 = r1 * Math.sin(angle);
+        const grad = ctx.createLinearGradient(x0, y0, x1, y1);
+        grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+        grad.addColorStop(0.2, "rgba(255, 255, 255, 0.1)");
+        grad.addColorStop(1, `rgba(255, 255, 255, ${Math.min(0.8 + inter, 1)})`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = Math.max(1.2, w * 0.003);
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
       }
-      const intensity = b.base + (noise * 0.5) + inter;
-      const r0 = r.inner;
-      const r1 = r.inner + (r.outer - r.inner) * intensity;
-      const x0 = r0 * Math.cos(angle), y0 = r0 * Math.sin(angle);
-      const x1 = r1 * Math.cos(angle), y1 = r1 * Math.sin(angle);
-      const grad = ctx.createLinearGradient(x0, y0, x1, y1);
-      grad.addColorStop(0, "rgba(255, 255, 255, 0)");
-      grad.addColorStop(0.2, "rgba(255, 255, 255, 0.1)");
-      grad.addColorStop(1, `rgba(255, 255, 255, ${Math.min(0.8 + inter, 1)})`);
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = Math.max(1.2, w * 0.003);
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      ctx.fillStyle = "#000";
+      ctx.beginPath(); ctx.arc(0, 0, r.center, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+      requestAnimationFrame(draw);
     }
-    ctx.fillStyle = "#000";
-    ctx.beginPath(); ctx.arc(0, 0, r.center, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
     requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-</script>
+  </script>
 </body>
+
 </html>
