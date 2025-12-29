@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +21,7 @@
       background-color: #000; 
       overflow: hidden;
       font-family: "Inter", -apple-system, system-ui, sans-serif;
-      touch-action: none;
+      touch-action: none; /* Prevents default browser touch actions to allow custom interaction */
       color: #999;
     }
 
@@ -62,7 +61,6 @@
       cursor: pointer;
       padding: 20px;
       transition: color 0.5s, text-shadow 0.5s;
-      white-space: nowrap;
     }
 
     .center-label:hover {
@@ -70,20 +68,16 @@
       text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
     }
 
-    /* Fixed positioning for mobile/desktop consistency */
     .footer-content {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
       z-index: 30;
+      margin-top: 65vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 14px;
       text-align: center;
       padding: 0 20px;
-      width: 100%;
     }
 
     .loom-link {
@@ -110,6 +104,7 @@
       font-style: italic;
       max-width: 320px;
       line-height: 1.5;
+      pointer-events: none;
     }
 
     .brand-tagline a {
@@ -146,7 +141,7 @@
     .popup-content {
       background: #050505;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: clamp(20px, 5vw, 60px);
+      padding: clamp(30px, 5vw, 60px);
       max-width: 850px;
       width: 100%;
       max-height: 85vh;
@@ -174,7 +169,7 @@
 
     .popup-content h2.main-title {
       font-family: 'Bodoni Moda', serif;
-      font-size: 28px;
+      font-size: 32px;
       color: #fff;
       text-align: center;
       margin-bottom: 5px;
@@ -187,14 +182,14 @@
       letter-spacing: 0.3em;
       color: rgba(255, 255, 255, 0.4);
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .popup-content h3 {
       font-family: 'Bodoni Moda', serif;
       font-style: italic;
       color: #fff;
-      margin: 30px 0 15px;
+      margin: 40px 0 15px;
       font-size: 18px;
       border-left: 1px solid rgba(255, 255, 255, 0.2);
       padding-left: 15px;
@@ -202,7 +197,7 @@
 
     .popup-content p {
       margin-bottom: 1.5em;
-      line-height: 1.7;
+      line-height: 1.8;
       font-size: 14px;
       font-weight: 300;
     }
@@ -235,8 +230,8 @@
     }
 
     .accent-section {
-      margin-top: 40px;
-      padding-top: 25px;
+      margin-top: 50px;
+      padding-top: 30px;
       border-top: 1px dashed rgba(255, 255, 255, 0.1);
     }
 
@@ -288,6 +283,14 @@
       aspect-ratio: 16/9;
       position: relative;
       background: #000;
+      box-shadow: 0 0 100px rgba(0,0,0,1);
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      .video-container {
+        width: 100vw;
+        height: auto;
+      }
     }
 
     #videoModal iframe {
@@ -300,13 +303,18 @@
 
     .video-close {
       position: absolute;
-      top: -40px;
+      top: -50px;
       right: 0;
       color: rgba(255, 255, 255, 0.4);
       cursor: pointer;
       font-size: 11px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .video-close:hover {
+      color: #fff;
     }
 
     #manifestoTemplate,
@@ -347,34 +355,51 @@
     <h2 class="main-title">01 // Origin</h2>
     <span class="subtitle">K MEANS LLC // ARCHITECTURAL R&D</span>
     <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who prioritize architectural elegance over bloat.</p>
-    <p>We push edge models to their absolute failure points to discover where the next breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision and intent.</p>
+    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent, and a minimalist's obsession with efficiency.</p>
     <h3>The Collective Conviction</h3>
-    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning Fabric</em>. Our work focuses on weaving disparate model threads into a singular, resilient cognitive layer.</p>
+    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on weaving these disparate threads into a singular, resilient cognitive layer, i.e., <strong>Reasoning Fabric</strong>.</p>
+    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from siloed inference to a distributed, collaborative intelligence substrate.</p>
     <h3>Architectural Integrity</h3>
-    <p>Our commitment is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We believe safety must be architectural, not just a post-hoc filter.</p>
+    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We believe that as models move from simple generators to autonomous reasoners, the safety layer must be architectural, not just a post-hoc filter.</p>
+    <p>At K Means, we ensure that ethical guardrails and operational stability are woven directly into the core logic of our systems, defining the next decade of enterprise and scientific computing.</p>
   </div>
 
   <div id="loomTemplate">
     <h2 class="main-title">Loom™</h2>
     <span class="subtitle">A Protocol for Cross-Model Consensus</span>
-    <p><strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>.</p>
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
     <h3>The Interoperability Layer</h3>
+    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
     <ul>
       <li><strong>Normalized Messaging Interface:</strong> Every node in the system communicates via a unified schema.</li>
-      <li><strong>State Synchronization:</strong> Loom™ maintains a shared context object across models.</li>
-      <li><strong>Zero-Copy Context Routing:</strong> Efficiently manages turn-taking to minimize latency.</li>
+      <li><strong>State Synchronization:</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
+      <li><strong>Zero-Copy Context Routing:</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
+    </ul>
+    <h3>Collective Intelligence via Consensus Formation</h3>
+    <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity outputs.</p>
+    <ul>
+      <li><strong>Diagnostic Disagreement:</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
+      <li><strong>Weighted Consensus:</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
+      <li><strong>Cross-Model Peer Review:</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
     </ul>
     <div class="accent-section">
-      <span class="subtitle" style="margin-bottom: 20px;">Field Recordings</span>
+      <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
       <a href="#" class="demo-link" data-video="https://youtu.be/LV54Z7E1WB8">
         <strong>[Demo 01: Consensus Formation]</strong>
-        Watch Loom synchronize GPT, Gemini, and Claude.
+        Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
       </a>
       <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
         <strong>[Demo 02: Adversarial Reasoning]</strong>
-        Eliminating hallucinations via cross-model peer review.
+        A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in scientific theory.
+      </a>
+      <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
+        <strong>[Demo 03: Formalized Logic]</strong>
+        Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable mathematical framework.
       </a>
     </div>
+    <p style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
+      Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a measurable increase in robustness and cognitive diversity.
+    </p>
   </div>
 
   <script>
@@ -386,6 +411,7 @@
     const videoModal = document.getElementById("videoModal");
     const playerFrame = document.getElementById("playerFrame");
 
+    // Unified input handler
     function handleInput(clientX, clientY) {
       const rect = canvas.getBoundingClientRect();
       mouse.x = clientX - (rect.left + rect.width / 2);
@@ -404,9 +430,16 @@
         link.onclick = (e) => {
           e.preventDefault();
           const vidUrl = link.getAttribute('data-video');
-          let videoId = vidUrl.includes('youtu.be/') ? vidUrl.split('youtu.be/')[1] : vidUrl.split('v=')[1];
+          let videoId = "";
+          if (vidUrl.includes('youtu.be/')) {
+            videoId = vidUrl.split('youtu.be/')[1].split(/[?#]/)[0];
+          } else if (vidUrl.includes('v=')) {
+            videoId = vidUrl.split('v=')[1].split(/[&#]/)[0];
+          }
           if (videoId) {
-            playerFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; fullscreen"></iframe>`;
+            const origin = window.location.origin;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}&playsinline=1`;
+            playerFrame.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
             videoModal.classList.add("active");
           }
         }
@@ -418,6 +451,16 @@
     document.getElementById("closePopup").onclick = () => popup.classList.remove("active");
     document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
 
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        videoModal.classList.remove("active");
+        playerFrame.innerHTML = "";
+        popup.classList.remove("active");
+      }
+    });
+
+    function getRadii(w) { return { inner: w * 0.12, outer: w * 0.34, center: w * 0.022 }; }
+
     function resize() {
       const rect = canvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
@@ -425,17 +468,34 @@
       canvas.height = rect.height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const label = document.querySelector(".center-label");
-      label.style.left = "50%";
-      label.style.top = "50%";
+      label.style.left = (rect.left + rect.width / 2) + "px";
+      label.style.top = (rect.top + rect.height / 2) + "px";
       label.style.transform = "translate(-50%, -50%)";
     }
     window.addEventListener("resize", resize);
     resize();
 
-    window.addEventListener("mousemove", (e) => handleInput(e.clientX, e.clientY));
-    window.addEventListener("touchstart", (e) => handleInput(e.touches[0].clientX, e.touches[0].clientY), { passive: false });
-    window.addEventListener("touchmove", (e) => { e.preventDefault(); handleInput(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
-    window.addEventListener("touchend", () => mouse.active = false);
+    // Event Listeners for Interaction
+    window.addEventListener("mousemove", (e) => {
+      handleInput(e.clientX, e.clientY);
+    });
+
+    window.addEventListener("touchstart", (e) => {
+      if (e.touches.length > 0) {
+        handleInput(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches.length > 0) {
+        e.preventDefault(); // Prevents page scrolling while interacting with the spiral
+        handleInput(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchend", () => {
+      mouse.active = false; // Returns animation to idle state on release
+    });
 
     const BAR_COUNT = 64;
     const bars = Array.from({ length: BAR_COUNT }, () => ({
@@ -450,7 +510,7 @@
       lastTime = timestamp;
       const w = canvas.width / (window.devicePixelRatio || 1);
       const h = canvas.height / (window.devicePixelRatio || 1);
-      const innerR = w * 0.12, outerR = w * 0.34;
+      const r = getRadii(w);
       ctx.clearRect(0, 0, w, h);
       ctx.save();
       ctx.translate(w / 2, h / 2);
@@ -458,18 +518,27 @@
         const b = bars[i];
         b.phase += b.speed * dt;
         const angle = (i / BAR_COUNT) * Math.PI * 2;
+        const noise = 0.5 + 0.5 * Math.sin(b.phase + i * 0.2);
         let inter = 0;
         if (mouse.active) {
-          const d = Math.hypot((innerR + w * 0.15) * Math.cos(angle) - mouse.x, (innerR + w * 0.15) * Math.sin(angle) - mouse.y);
+          const tx = (r.inner + (w * 0.15)) * Math.cos(angle);
+          const ty = (r.inner + (w * 0.15)) * Math.sin(angle);
+          const d = Math.hypot(tx - mouse.x, ty - mouse.y);
           inter = Math.max(0, 1 - d / (w * 0.3)) * 0.4;
         }
-        const intensity = b.base + (0.5 + 0.5 * Math.sin(b.phase + i * 0.2)) * 0.5 + inter;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${Math.min(0.2 + inter * 2, 0.8)})`;
-        ctx.beginPath();
-        ctx.moveTo(innerR * Math.cos(angle), innerR * Math.sin(angle));
-        ctx.lineTo((innerR + (outerR - innerR) * intensity) * Math.cos(angle), (innerR + (outerR - innerR) * intensity) * Math.sin(angle));
-        ctx.stroke();
+        const intensity = b.base + (noise * 0.5) + inter;
+        const x0 = r.inner * Math.cos(angle), y0 = r.inner * Math.sin(angle);
+        const x1 = (r.inner + (r.outer - r.inner) * intensity) * Math.cos(angle), y1 = (r.inner + (r.outer - r.inner) * intensity) * Math.sin(angle);
+        const grad = ctx.createLinearGradient(x0, y0, x1, y1);
+        grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+        grad.addColorStop(0.2, "rgba(255, 255, 255, 0.1)");
+        grad.addColorStop(1, `rgba(255, 255, 255, ${Math.min(0.8 + inter, 1)})`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = Math.max(1.2, w * 0.003);
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
       }
+      ctx.fillStyle = "#000";
+      ctx.beginPath(); ctx.arc(0, 0, r.center, 0, Math.PI * 2); ctx.fill();
       ctx.restore();
       requestAnimationFrame(draw);
     }
