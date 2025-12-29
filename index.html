@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="referrer" content="origin" />
   <title>K MEANS LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap"
@@ -103,10 +104,9 @@
       font-style: italic;
       max-width: 320px;
       line-height: 1.5;
-      pointer-events: none; /* Keeps text from blocking mouse movement for the spiral */
+      pointer-events: none;
     }
 
-    /* THE FIX: Re-enables pointer events only for the link inside the tagline */
     .brand-tagline a {
       pointer-events: auto; 
       color: inherit;
@@ -118,7 +118,6 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    /* POPUP SYSTEM */
     #infoPopup {
       opacity: 0;
       visibility: hidden;
@@ -230,7 +229,6 @@
       background: rgba(255, 255, 255, 0.3);
     }
 
-    /* ACCENT SECTION */
     .accent-section {
       margin-top: 50px;
       padding-top: 30px;
@@ -264,7 +262,6 @@
       margin-bottom: 4px;
     }
 
-    /* VIDEO MODAL */
     #videoModal {
       display: none;
       position: fixed;
@@ -447,9 +444,21 @@
       popupBody.querySelectorAll('.demo-link').forEach(link => {
         link.onclick = (e) => {
           e.preventDefault();
-          const vidUrl = link.getAttribute('data-video').replace('watch?v=', 'embed/');
-          playerFrame.innerHTML = `<iframe src="${vidUrl}" allow="autoplay; fullscreen"></iframe>`;
-          videoModal.classList.add("active");
+          let vidUrl = link.getAttribute('data-video');
+          
+          let videoId = "";
+          if (vidUrl.includes('youtu.be/')) {
+            videoId = vidUrl.split('youtu.be/')[1].split(/[?#]/)[0];
+          } else if (vidUrl.includes('v=')) {
+            videoId = vidUrl.split('v=')[1].split(/[&#]/)[0];
+          }
+
+          if (videoId) {
+            const origin = window.location.origin;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${origin}`;
+            playerFrame.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+            videoModal.classList.add("active");
+          }
         }
       });
     }
