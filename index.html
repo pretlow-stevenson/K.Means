@@ -6,8 +6,7 @@
   <meta name="referrer" content="origin" />
   <title>K MEANS LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400 display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -18,7 +17,9 @@
     html,
     body {
       height: 100%;
-      background: radial-gradient(circle at top, #1a1a1a 0%, #0d0d0d 60%, #000 100%);
+      /* Updated to pure black background with a subtle deep-gray top glow */
+      background: radial-gradient(circle at top, #0a0a0a 0%, #050505 40%, #000 100%);
+      background-color: #000; 
       overflow: hidden;
       font-family: "Inter", -apple-system, system-ui, sans-serif;
       touch-action: none;
@@ -124,7 +125,7 @@
       position: fixed;
       inset: 0;
       z-index: 100;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(25px);
       display: flex;
       align-items: center;
@@ -262,7 +263,6 @@
       margin-bottom: 4px;
     }
 
-    /* SCALABLE THEATER MODAL */
     #videoModal {
       display: none;
       position: fixed;
@@ -287,7 +287,6 @@
       box-shadow: 0 0 100px rgba(0,0,0,1);
     }
 
-    /* Handling Portrait orientation (Mobile) */
     @media (max-aspect-ratio: 1/1) {
       .video-container {
         width: 100vw;
@@ -356,85 +355,51 @@
   <div id="manifestoTemplate">
     <h2 class="main-title">01 // Origin</h2>
     <span class="subtitle">K MEANS LLC // ARCHITECTURAL R&D</span>
-    <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke
-      solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who
-      prioritize architectural elegance over bloat.</p>
-    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next
-      breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent,
-      and a minimalist's obsession with efficiency.</p>
+    <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who prioritize architectural elegance over bloat.</p>
+    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent, and a minimalist's obsession with efficiency.</p>
     <h3>The Collective Conviction</h3>
-    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning
-        Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on
-      weaving these disparate threads into a singular, resilient cognitive layer, i.e., <strong>Reasoning Fabric</strong>.</p>
-    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from
-      siloed inference to a distributed, collaborative intelligence substrate.</p>
+    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on weaving these disparate threads into a singular, resilient cognitive layer, i.e., <strong>Reasoning Fabric</strong>.</p>
+    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from siloed inference to a distributed, collaborative intelligence substrate.</p>
     <h3>Architectural Integrity</h3>
-    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We
-      believe that as models move from simple generators to autonomous reasoners, the safety layer must be
-      architectural, not just a post-hoc filter.</p>
-    <p>At K Means, we ensure that ethical guardrails and operational stability are woven directly into the core logic of
-      our systems, defining the next decade of enterprise and scientific computing.</p>
+    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We believe that as models move from simple generators to autonomous reasoners, the safety layer must be architectural, not just a post-hoc filter.</p>
+    <p>At K Means, we ensure that ethical guardrails and operational stability are woven directly into the core logic of our systems, defining the next decade of enterprise and scientific computing.</p>
   </div>
 
   <div id="loomTemplate">
     <h2 class="main-title">Loom™</h2>
     <span class="subtitle">A Protocol for Cross-Model Consensus</span>
-
-    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning.
-      <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational
-        substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
-
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
     <h3>The Interoperability Layer</h3>
-    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API
-      structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
-
+    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
     <ul>
-      <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.
-      </li>
-      <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context
-        object. This ensures every model is contextually aware of the full conversational state.</li>
-      <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize
-        latency while maximizing the semantic density.</li>
+      <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.</li>
+      <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
+      <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
     </ul>
-
     <h3>Collective Intelligence via Consensus Formation</h3>
-    <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative
-        reasoning</strong> between models to generate high-fidelity outputs.</p>
-
+    <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity outputs.</p>
     <ul>
-      <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal
-        diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
-      <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the
-        system generates a reliability metric.</li>
-      <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse
-        inductive biases to eliminate hallucinations.</li>
+      <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
+      <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
+      <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
     </ul>
-
     <div class="accent-section">
       <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
-
       <a href="#" class="demo-link" data-video="https://youtu.be/LV54Z7E1WB8">
         <strong>[Demo 01: Consensus Formation]</strong>
         Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
       </a>
-
       <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
         <strong>[Demo 02: Adversarial Reasoning]</strong>
-        A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in
-        scientific theory.
+        A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in scientific theory.
       </a>
-
       <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
         <strong>[Demo 03: Formalized Logic]</strong>
-        Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable
-        mathematical framework.
+        Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable mathematical framework.
       </a>
     </div>
-
-    <p
-      style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
-      Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a
-      measurable increase in robustness and cognitive diversity.
+    <p style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
+      Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a measurable increase in robustness and cognitive diversity.
     </p>
   </div>
 
@@ -442,7 +407,6 @@
     const canvas = document.getElementById("radialViz");
     const ctx = canvas.getContext("2d");
     let mouse = { x: 0, y: 0, active: false };
-
     const popup = document.getElementById("infoPopup");
     const popupBody = document.getElementById("popupBody");
     const videoModal = document.getElementById("videoModal");
@@ -459,26 +423,16 @@
         link.onclick = (e) => {
           e.preventDefault();
           const vidUrl = link.getAttribute('data-video');
-          
           let videoId = "";
           if (vidUrl.includes('youtu.be/')) {
             videoId = vidUrl.split('youtu.be/')[1].split(/[?#]/)[0];
           } else if (vidUrl.includes('v=')) {
             videoId = vidUrl.split('v=')[1].split(/[&#]/)[0];
           }
-
           if (videoId) {
             const origin = window.location.origin;
-            // Enhanced embed parameters for mobile theater stability
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}&playsinline=1`;
-            
-            playerFrame.innerHTML = `
-              <iframe 
-                src="${embedUrl}" 
-                frameborder="0"
-                allow="autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
-                allowfullscreen>
-              </iframe>`;
+            playerFrame.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
             videoModal.classList.add("active");
           }
         }
@@ -488,10 +442,7 @@
     document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
     document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
     document.getElementById("closePopup").onclick = () => popup.classList.remove("active");
-    document.getElementById("closeVideo").onclick = () => { 
-      videoModal.classList.remove("active"); 
-      playerFrame.innerHTML = ""; 
-    };
+    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
 
     window.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
@@ -509,7 +460,6 @@
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
       const label = document.querySelector(".center-label");
       label.style.left = (rect.left + rect.width / 2) + "px";
       label.style.top = (rect.top + rect.height / 2) + "px";
@@ -555,10 +505,8 @@
           inter = Math.max(0, 1 - d / (w * 0.3)) * 0.4;
         }
         const intensity = b.base + (noise * 0.5) + inter;
-        const r0 = r.inner;
-        const r1 = r.inner + (r.outer - r.inner) * intensity;
-        const x0 = r0 * Math.cos(angle), y0 = r0 * Math.sin(angle);
-        const x1 = r1 * Math.cos(angle), y1 = r1 * Math.sin(angle);
+        const x0 = r.inner * Math.cos(angle), y0 = r.inner * Math.sin(angle);
+        const x1 = (r.inner + (r.outer - r.inner) * intensity) * Math.cos(angle), y1 = (r.inner + (r.outer - r.inner) * intensity) * Math.sin(angle);
         const grad = ctx.createLinearGradient(x0, y0, x1, y1);
         grad.addColorStop(0, "rgba(255, 255, 255, 0)");
         grad.addColorStop(0.2, "rgba(255, 255, 255, 0.1)");
