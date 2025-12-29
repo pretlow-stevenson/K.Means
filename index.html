@@ -1,311 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="referrer" content="origin" />
-  <title>K MEANS LLC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  html, body {
+    /* Use dvh to account for mobile browser address bars */
+    height: 100dvh;
+    width: 100vw;
+    background: radial-gradient(circle at top, #0a0a0a 0%, #050505 40%, #000 100%);
+    background-color: #000; 
+    overflow: hidden;
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    touch-action: none; 
+    color: #999;
+  }
 
-    html,
-    body {
-      height: 100%;
-      background: radial-gradient(circle at top, #0a0a0a 0%, #050505 40%, #000 100%);
-      background-color: #000; 
-      overflow: hidden;
-      font-family: "Inter", -apple-system, system-ui, sans-serif;
-      touch-action: none; 
-      color: #999;
-    }
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Center the main content vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+  }
 
-    body.modal-open {
-      overflow: hidden;
-    }
+  /* Container for the spiral and center text */
+  .viz-container {
+    position: relative;
+    width: 100%;
+    height: 60%; /* Occupy the top/middle portion */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
 
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  .viz-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
 
-    .viz-wrapper {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      z-index: 5;
-    }
+  canvas {
+    /* Keep canvas size responsive but contained */
+    width: min(80vmin, 800px);
+    height: min(80vmin, 800px);
+  }
 
-    canvas {
-      width: min(85vmin, 900px);
-      height: min(85vmin, 900px);
-    }
+  .center-label {
+    position: absolute;
+    z-index: 20;
+    font-size: clamp(10px, 2.5vw, 14px);
+    font-weight: 200;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 20px;
+    transition: color 0.5s, text-shadow 0.5s;
+    white-space: nowrap;
+    text-align: center;
+    /* No manual top/left needed because parent is flex-centered */
+  }
 
-    /* Fixed centering logic using CSS instead of JS offsets */
-    .center-label {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 20;
-      font-size: clamp(10px, 2vw, 14px);
-      font-weight: 200;
-      letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-      cursor: pointer;
-      padding: 20px;
-      transition: color 0.5s, text-shadow 0.5s;
-      white-space: nowrap;
-      text-align: center;
-    }
+  .center-label:hover {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  }
 
-    .center-label:hover {
-      color: rgba(255, 255, 255, 1);
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-    }
+  .footer-content {
+    position: absolute;
+    bottom: 5dvh; /* Locked 5% from the actual bottom of the screen */
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 0 20px;
+    width: 100%;
+  }
 
-    .footer-content {
-      position: absolute;
-      bottom: 8%; /* Relative to screen height for better mobile fit */
-      z-index: 30;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      text-align: center;
-      padding: 0 20px;
-      width: 100%;
-    }
+  .loom-link {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    transition: 0.4s;
+    padding-bottom: 5px;
+  }
 
-    .loom-link {
-      color: rgba(255, 255, 255, 0.4);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.35em;
-      cursor: pointer;
-      transition: 0.4s;
-    }
+  .brand-tagline {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    font-style: italic;
+    max-width: 280px;
+    line-height: 1.4;
+  }
 
-    .loom-link:hover {
-      color: #fff;
-      letter-spacing: 0.45em;
-      transform: translateY(-1px);
-    }
-
-    .brand-tagline {
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 9px;
-      font-weight: 200;
-      letter-spacing: 0.12em;
-      font-style: italic;
-      max-width: 320px;
-      line-height: 1.5;
-    }
-
-    .brand-tagline a {
-      pointer-events: auto; 
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    #infoPopup {
-      opacity: 0;
-      visibility: hidden;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(25px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      transition: 0.6s;
-    }
-
-    #infoPopup.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .popup-content {
-      background: #050505;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: clamp(30px, 5vw, 60px);
-      max-width: 850px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      position: relative;
-      transform: scale(0.98);
-      transition: 0.6s;
-      touch-action: pan-y; 
-    }
-
-    #infoPopup.active .popup-content {
-      transform: scale(1);
-    }
-
-    .close-btn {
-      position: sticky;
-      float: right;
-      top: -10px;
-      color: rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      z-index: 110;
-      padding: 10px;
-      background: #050505;
-    }
-
-    /* Template and Video Styles preserved from your original */
-    #manifestoTemplate, #loomTemplate { display: none; }
-    #videoModal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.98); align-items: center; justify-content: center; padding: 20px; }
-    #videoModal.active { display: flex; }
-    .video-container { width: 95vw; max-width: 1400px; aspect-ratio: 16/9; position: relative; }
-    #videoModal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .video-close { position: absolute; top: -50px; right: 0; color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
-  </style>
-</head>
+  /* Popup Scroll Fix */
+  .popup-content {
+    background: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    max-width: 850px;
+    width: 90%;
+    max-height: 80dvh; /* Prevent popup from going off-screen */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+</style>
 
 <body>
-
   <div class="hero">
-    <div class="center-label" id="openManifesto">KMEANS.AI | K MEANS LLC</div>
-    <div class="viz-wrapper"><canvas id="radialViz"></canvas></div>
+    <div class="viz-container">
+      <div class="center-label" id="openManifesto">KMEANS.AI | K MEANS LLC</div>
+      <div class="viz-wrapper">
+        <canvas id="radialViz"></canvas>
+      </div>
+    </div>
+
     <div class="footer-content">
       <a class="loom-link" id="openLoom">LOOM™ LINGUISTIC BRIDGE</a>
       <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.<br><br>
-        <a href="mailto:inspire@kmeans.ai">inspire@kmeans.ai</a>
+        <a href="mailto:inspire@kmeans.ai" style="color: inherit; text-decoration: none; pointer-events: auto;">inspire@kmeans.ai</a>
       </span>
     </div>
   </div>
-
-  <div id="infoPopup">
-    <div class="popup-content">
-      <span class="close-btn" id="closePopup">ESC / CLOSE</span>
-      <div id="popupBody"></div>
-    </div>
-  </div>
-
-  <div id="videoModal">
-    <div class="video-container">
-      <span class="video-close" id="closeVideo">EXIT THEATER</span>
-      <div id="playerFrame"></div>
-    </div>
-  </div>
-
-  <div id="manifestoTemplate">
-    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; color: #fff; text-align: center;">01 // Origin</h2>
-    <p style="margin-top:20px; line-height: 1.8; font-size: 14px;"><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke solutions for non-trivial challenges...</p>
-    </div>
-
-  <div id="loomTemplate">
-    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; color: #fff; text-align: center;">Loom™</h2>
-    <p style="margin-top:20px; line-height: 1.8; font-size: 14px;">The current LLM paradigm treats frontier models as isolated oracles. <strong>Loom</strong> shifts the architecture into a unified conversational substrate...</p>
-    </div>
-
-  <script>
-    const canvas = document.getElementById("radialViz");
-    const ctx = canvas.getContext("2d");
-    let mouse = { x: 0, y: 0, active: false };
-    const popup = document.getElementById("infoPopup");
-    const videoModal = document.getElementById("videoModal");
-
-    function handleInput(clientX, clientY) {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = clientX - (rect.left + rect.width / 2);
-      mouse.y = clientY - (rect.top + rect.height / 2);
-      mouse.active = true;
-    }
-
-    function openPopup(contentId) {
-      document.getElementById("popupBody").innerHTML = document.getElementById(contentId).innerHTML;
-      popup.classList.add("active");
-      document.body.classList.add("modal-open");
-    }
-
-    function closePopup() {
-      popup.classList.remove("active");
-      document.body.classList.remove("modal-open");
-    }
-
-    document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
-    document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
-    document.getElementById("closePopup").onclick = closePopup;
-    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); document.getElementById("playerFrame").innerHTML = ""; };
-
-    function resize() {
-      const dpr = window.devicePixelRatio || 1;
-      const size = Math.min(window.innerWidth * 0.85, 900);
-      canvas.width = size * dpr;
-      canvas.height = size * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    window.addEventListener("mousemove", (e) => { if (!document.body.classList.contains('modal-open')) handleInput(e.clientX, e.clientY); });
-    window.addEventListener("touchstart", (e) => { if (!document.body.classList.contains('modal-open')) handleInput(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    window.addEventListener("touchmove", (e) => { if (!document.body.classList.contains('modal-open')) { e.preventDefault(); handleInput(e.touches[0].clientX, e.touches[0].clientY); } }, { passive: false });
-    window.addEventListener("touchend", () => mouse.active = false);
-
-    const BAR_COUNT = 64;
-    const bars = Array.from({ length: BAR_COUNT }, () => ({
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.4 + Math.random() * 0.4,
-      base: 0.35 + Math.random() * 0.25
-    }));
-
-    let lastTime = performance.now();
-    function draw(timestamp) {
-      const dt = (timestamp - lastTime) / 1000;
-      lastTime = timestamp;
-      const w = canvas.width / (window.devicePixelRatio || 1);
-      const h = canvas.height / (window.devicePixelRatio || 1);
-      const inner = w * 0.12, outer = w * 0.34;
-      ctx.clearRect(0, 0, w, h);
-      ctx.save();
-      ctx.translate(w / 2, h / 2);
-      for (let i = 0; i < BAR_COUNT; i++) {
-        const b = bars[i];
-        b.phase += b.speed * dt;
-        const angle = (i / BAR_COUNT) * Math.PI * 2;
-        let inter = 0;
-        if (mouse.active) {
-          const d = Math.hypot((inner + w * 0.15) * Math.cos(angle) - mouse.x, (inner + w * 0.15) * Math.sin(angle) - mouse.y);
-          inter = Math.max(0, 1 - d / (w * 0.3)) * 0.4;
-        }
-        const intensity = b.base + (0.5 + 0.5 * Math.sin(b.phase + i * 0.2)) * 0.5 + inter;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${Math.min(0.2 + inter * 2, 0.8)})`;
-        ctx.lineWidth = Math.max(1.2, w * 0.003);
-        ctx.beginPath();
-        ctx.moveTo(inner * Math.cos(angle), inner * Math.sin(angle));
-        ctx.lineTo((inner + (outer - inner) * intensity) * Math.cos(angle), (inner + (outer - inner) * intensity) * Math.sin(angle));
-        ctx.stroke();
-      }
-      ctx.restore();
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-  </script>
-</body>
-</html>
