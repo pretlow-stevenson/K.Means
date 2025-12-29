@@ -262,14 +262,16 @@
       margin-bottom: 4px;
     }
 
+    /* SCALABLE THEATER MODAL */
     #videoModal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 200;
-      background: #000;
+      background: rgba(0, 0, 0, 0.98);
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     #videoModal.active {
@@ -277,10 +279,20 @@
     }
 
     .video-container {
-      width: 90%;
-      max-width: 1000px;
+      width: 95vw;
+      max-width: 1400px;
       aspect-ratio: 16/9;
       position: relative;
+      background: #000;
+      box-shadow: 0 0 100px rgba(0,0,0,1);
+    }
+
+    /* Handling Portrait orientation (Mobile) */
+    @media (max-aspect-ratio: 1/1) {
+      .video-container {
+        width: 100vw;
+        height: auto;
+      }
     }
 
     #videoModal iframe {
@@ -293,12 +305,14 @@
 
     .video-close {
       position: absolute;
-      top: -40px;
+      top: -50px;
       right: 0;
-      color: #666;
+      color: rgba(255, 255, 255, 0.4);
       cursor: pointer;
-      font-size: 12px;
-      letter-spacing: 0.2em;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      transition: color 0.3s;
     }
 
     .video-close:hover {
@@ -334,7 +348,7 @@
 
   <div id="videoModal">
     <div class="video-container">
-      <span class="video-close" id="closeVideo">CLOSE PLAYER</span>
+      <span class="video-close" id="closeVideo">EXIT THEATER</span>
       <div id="playerFrame"></div>
     </div>
   </div>
@@ -444,7 +458,7 @@
       popupBody.querySelectorAll('.demo-link').forEach(link => {
         link.onclick = (e) => {
           e.preventDefault();
-          let vidUrl = link.getAttribute('data-video');
+          const vidUrl = link.getAttribute('data-video');
           
           let videoId = "";
           if (vidUrl.includes('youtu.be/')) {
@@ -455,8 +469,16 @@
 
           if (videoId) {
             const origin = window.location.origin;
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${origin}`;
-            playerFrame.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+            // Enhanced embed parameters for mobile theater stability
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}&playsinline=1`;
+            
+            playerFrame.innerHTML = `
+              <iframe 
+                src="${embedUrl}" 
+                frameborder="0"
+                allow="autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+                allowfullscreen>
+              </iframe>`;
             videoModal.classList.add("active");
           }
         }
@@ -466,7 +488,10 @@
     document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
     document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
     document.getElementById("closePopup").onclick = () => popup.classList.remove("active");
-    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
+    document.getElementById("closeVideo").onclick = () => { 
+      videoModal.classList.remove("active"); 
+      playerFrame.innerHTML = ""; 
+    };
 
     window.addEventListener('keydown', (e) => {
       if (e.key === "Escape") {
@@ -550,5 +575,4 @@
     requestAnimationFrame(draw);
   </script>
 </body>
-
 </html>
