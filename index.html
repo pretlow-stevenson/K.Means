@@ -103,7 +103,19 @@
       font-style: italic;
       max-width: 320px;
       line-height: 1.5;
-      pointer-events: none;
+      pointer-events: none; /* Keeps text from blocking mouse movement for the spiral */
+    }
+
+    /* THE FIX: Re-enables pointer events only for the link inside the tagline */
+    .brand-tagline a {
+      pointer-events: auto; 
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .brand-tagline a:hover {
+      color: rgba(255, 255, 255, 0.6);
     }
 
     /* POPUP SYSTEM */
@@ -310,7 +322,9 @@
     <div class="viz-wrapper"><canvas id="radialViz"></canvas></div>
     <div class="footer-content">
       <a class="loom-link" id="openLoom">LOOM™ LINGUISTIC BRIDGE</a>
-      <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</span>
+      <span class="brand-tagline">Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.<br><br>
+        <a href="mailto:inspire@kmeans.ai">inspire@kmeans.ai</a>
+      </span>
     </div>
   </div>
 
@@ -388,18 +402,18 @@
     <div class="accent-section">
       <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
 
-      <a href="#" class="demo-link" data-video="http://youtube">
+      <a href="#" class="demo-link" data-video="https://youtu.be/LV54Z7E1WB8">
         <strong>[Demo 01: Consensus Formation]</strong>
         Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
       </a>
 
-      <a href="#" class="demo-link" data-video="http://youtube">
+      <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
         <strong>[Demo 02: Adversarial Reasoning]</strong>
         A deep-dive into cross-model peer review, using disparate architectures to eliminate hallucinations in
         scientific theory.
       </a>
 
-      <a href="#" class="demo-link" data-video="http://youtube">
+      <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
         <strong>[Demo 03: Formalized Logic]</strong>
         Observe the Interoperability Layer as it normalizes complex expressive gaps into a unified, provable
         mathematical framework.
