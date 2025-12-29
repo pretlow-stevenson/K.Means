@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      height: 100dvh; /* Dynamic height fixes mobile browser bars */
+      height: 100dvh; 
       width: 100vw;
       background: radial-gradient(circle at top, #0a0a0a 0%, #050505 40%, #000 100%);
       background-color: #000;
@@ -31,7 +31,6 @@
       justify-content: center;
     }
 
-    /* Fixed alignment for the center text */
     .center-label {
       position: absolute;
       left: 50%;
@@ -48,6 +47,11 @@
       transition: color 0.5s;
       white-space: nowrap;
       text-align: center;
+    }
+
+    .center-label:hover {
+      color: rgba(255, 255, 255, 1);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
     }
 
     .viz-wrapper {
@@ -68,7 +72,7 @@
 
     .footer-content {
       position: absolute;
-      bottom: 40px; /* Anchors content to the actual bottom */
+      bottom: 40px;
       z-index: 30;
       display: flex;
       flex-direction: column;
@@ -83,31 +87,65 @@
       color: rgba(255, 255, 255, 0.4);
       text-decoration: none;
       font-size: 11px;
-      letter-spacing: 0.3em;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      cursor: pointer;
       transition: 0.4s;
+    }
+
+    .loom-link:hover {
+      color: #fff;
+      letter-spacing: 0.45em;
+      transform: translateY(-1px);
     }
 
     .brand-tagline {
       color: rgba(255, 255, 255, 0.2);
       font-size: 9px;
-      max-width: 300px;
-      line-height: 1.5;
+      font-weight: 200;
+      letter-spacing: 0.12em;
       font-style: italic;
+      max-width: 320px;
+      line-height: 1.5;
     }
 
     /* Popup Styling */
     #infoPopup {
       opacity: 0; visibility: hidden; position: fixed; inset: 0; z-index: 100;
-      background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
-      display: flex; align-items: center; justify-content: center; transition: 0.4s;
+      background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(25px);
+      display: flex; align-items: center; justify-content: center; padding: 20px; transition: 0.6s;
     }
     #infoPopup.active { opacity: 1; visibility: visible; }
+    
     .popup-content {
-      background: #050505; border: 1px solid #111; padding: 40px;
-      width: 90%; max-width: 800px; max-height: 80dvh; overflow-y: auto;
+      background: #050505; border: 1px solid rgba(255, 255, 255, 0.05); padding: clamp(30px, 5vw, 60px);
+      max-width: 850px; width: 100%; max-height: 85dvh; overflow-y: auto;
+      position: relative; transform: scale(0.98); transition: 0.6s;
       touch-action: pan-y; -webkit-overflow-scrolling: touch;
     }
-    .close-btn { float: right; cursor: pointer; font-size: 10px; color: #555; }
+    #infoPopup.active .popup-content { transform: scale(1); }
+
+    .close-btn { position: sticky; float: right; top: -10px; color: rgba(255, 255, 255, 0.2); cursor: pointer; font-size: 10px; letter-spacing: 0.2em; z-index: 110; padding: 10px; background: #050505; }
+    
+    .popup-content h2.main-title { font-family: 'Bodoni Moda', serif; font-size: 32px; color: #fff; text-align: center; margin-bottom: 5px; }
+    .popup-content .subtitle { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255, 255, 255, 0.4); text-align: center; margin-bottom: 40px; }
+    .popup-content h3 { font-family: 'Bodoni Moda', serif; font-style: italic; color: #fff; margin: 40px 0 15px; font-size: 18px; border-left: 1px solid rgba(255, 255, 255, 0.2); padding-left: 15px; }
+    .popup-content p { margin-bottom: 1.5em; line-height: 1.8; font-size: 14px; font-weight: 300; }
+    .popup-content strong { color: #fff; font-weight: 400; }
+    .popup-content ul { margin-bottom: 30px; list-style: none; }
+    .popup-content li { margin-bottom: 18px; font-size: 13px; padding-left: 25px; position: relative; }
+    .popup-content li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 1px; background: rgba(255, 255, 255, 0.3); }
+
+    .accent-section { margin-top: 50px; padding-top: 30px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
+    .demo-link { display: block; color: #ccc; text-decoration: none; font-size: 13px; margin-bottom: 20px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.03); background: rgba(255, 255, 255, 0.01); transition: 0.3s; }
+    .demo-link:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); color: #fff; }
+    .demo-link strong { color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+
+    #videoModal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.98); align-items: center; justify-content: center; padding: 20px; }
+    #videoModal.active { display: flex; }
+    .video-container { width: 95vw; max-width: 1400px; aspect-ratio: 16/9; position: relative; background: #000; box-shadow: 0 0 100px rgba(0,0,0,1); }
+    #videoModal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-close { position: absolute; top: -50px; right: 0; color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
 
     #manifestoTemplate, #loomTemplate { display: none; }
   </style>
@@ -132,33 +170,109 @@
 
   <div id="infoPopup">
     <div class="popup-content">
-      <span class="close-btn" id="closePopup">CLOSE</span>
+      <span class="close-btn" id="closePopup">ESC / CLOSE</span>
       <div id="popupBody"></div>
     </div>
   </div>
 
+  <div id="videoModal">
+    <div class="video-container">
+      <span class="video-close" id="closeVideo">EXIT THEATER</span>
+      <div id="playerFrame"></div>
+    </div>
+  </div>
+
   <div id="manifestoTemplate">
-    <h2 style="color:#fff; font-family:'Bodoni Moda'; margin-bottom:20px;">01 // Origin</h2>
-    <p>K Means LLC is a high-velocity AI R&D lab engineering bespoke solutions for non-trivial challenges.</p>
+    <h2 class="main-title">01 // Origin</h2>
+    <span class="subtitle">K MEANS LLC // ARCHITECTURAL R&D</span>
+    <p><strong>K Means LLC</strong> is a high-velocity AI research and development lab dedicated to engineering bespoke solutions for non-trivial challenges. We operate as a lean, nimble collective of engineers and researchers who prioritize architectural elegance over bloat.</p>
+    <p>We don't just use AI; we push edge models to their absolute failure points to discover where the next breakthrough begins. For us, every line of code is a structural load-bearing element—built with precision, intent, and a minimalist's obsession with efficiency.</p>
+    <h3>The Collective Conviction</h3>
+    <p>We are steadfast in the conviction that <em>Intelligence is Emergent. The Future is an Integrated Reasoning Fabric.</em> We view the current landscape of isolated models as a temporary limitation. Our work focuses on weaving these disparate threads into a singular, resilient cognitive layer, i.e., <strong>Reasoning Fabric</strong>.</p>
+    <p>Loom™, our Linguistic Bridge, serves as the foundational protocol for this vision—transitioning the industry from siloed inference to a distributed, collaborative intelligence substrate.</p>
+    <h3>Architectural Integrity</h3>
+    <p>Our commitment to innovation is balanced by an uncompromising approach to <strong>Responsible AI</strong>. We believe that as models move from simple generators to autonomous reasoners, the safety layer must be architectural, not just a post-hoc filter.</p>
   </div>
 
   <div id="loomTemplate">
-    <h2 style="color:#fff; font-family:'Bodoni Moda'; margin-bottom:20px;">Loom™</h2>
-    <p>A protocol for cross-model consensus and unified reasoning fabrics.</p>
+    <h2 class="main-title">Loom™</h2>
+    <span class="subtitle">A Protocol for Cross-Model Consensus</span>
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. <strong>Loom</strong> shifts the architecture from discrete inference calls to a <strong>unified conversational substrate</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system.</p>
+    <h3>The Interoperability Layer</h3>
+    <ul>
+      <li><strong>Normalized Messaging Interface:</strong> Every node in the system communicates via a unified schema.</li>
+      <li><strong>State Synchronization:</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
+      <li><strong>Zero-Copy Context Routing:</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
+    </ul>
+    <h3>Collective Intelligence via Consensus Formation</h3>
+    <ul>
+      <li><strong>Diagnostic Disagreement:</strong> Areas of divergent reasoning serve as high-signal diagnostic surfaces.</li>
+      <li><strong>Weighted Consensus:</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
+      <li><strong>Cross-Model Peer Review:</strong> Models critique and refine the reasoning of others.</li>
+    </ul>
+    <div class="accent-section">
+      <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
+      <a href="#" class="demo-link" data-video="https://youtu.be/LV54Z7E1WB8">
+        <strong>[Demo 01: Consensus Formation]</strong>
+        Watch Loom synchronize GPT, Gemini, and Claude to architect a micro-society.
+      </a>
+      <a href="#" class="demo-link" data-video="https://youtu.be/J4NJ9DbgQiU">
+        <strong>[Demo 02: Adversarial Reasoning]</strong>
+        A deep-dive into cross-model peer review to eliminate hallucinations.
+      </a>
+    </div>
   </div>
 
   <script>
     const canvas = document.getElementById("radialViz");
     const ctx = canvas.getContext("2d");
     let mouse = { x: 0, y: 0, active: false };
+    const popup = document.getElementById("infoPopup");
+    const popupBody = document.getElementById("popupBody");
+    const videoModal = document.getElementById("videoModal");
+    const playerFrame = document.getElementById("playerFrame");
 
     function handleInput(clientX, clientY) {
       const rect = canvas.getBoundingClientRect();
-      // Calculate coordinates relative to the canvas center
       mouse.x = clientX - (rect.left + rect.width / 2);
       mouse.y = clientY - (rect.top + rect.height / 2);
       mouse.active = true;
     }
+
+    function openPopup(contentId) {
+      popupBody.innerHTML = document.getElementById(contentId).innerHTML;
+      popup.classList.add("active");
+      document.body.classList.add("modal-open");
+      if (contentId === 'loomTemplate') attachVideoListeners();
+    }
+
+    function closePopup() {
+      popup.classList.remove("active");
+      document.body.classList.remove("modal-open");
+    }
+
+    function attachVideoListeners() {
+      popupBody.querySelectorAll('.demo-link').forEach(link => {
+        link.onclick = (e) => {
+          e.preventDefault();
+          const vidUrl = link.getAttribute('data-video');
+          let videoId = "";
+          if (vidUrl.includes('youtu.be/')) videoId = vidUrl.split('youtu.be/')[1].split(/[?#]/)[0];
+          else if (vidUrl.includes('v=')) videoId = vidUrl.split('v=')[1].split(/[&#]/)[0];
+          
+          if (videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1`;
+            playerFrame.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+            videoModal.classList.add("active");
+          }
+        }
+      });
+    }
+
+    document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup('loomTemplate'); };
+    document.getElementById("openManifesto").onclick = () => openPopup('manifestoTemplate');
+    document.getElementById("closePopup").onclick = closePopup;
+    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
 
     function resize() {
       const dpr = window.devicePixelRatio || 1;
@@ -169,18 +283,9 @@
     }
 
     window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", (e) => {
-      if (!document.body.classList.contains('modal-open')) handleInput(e.clientX, e.clientY);
-    });
-    window.addEventListener("touchstart", (e) => {
-      if (!document.body.classList.contains('modal-open')) handleInput(e.touches[0].clientX, e.touches[0].clientY);
-    }, { passive: true });
-    window.addEventListener("touchmove", (e) => {
-      if (!document.body.classList.contains('modal-open')) {
-        e.preventDefault(); 
-        handleInput(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: false });
+    window.addEventListener("mousemove", (e) => { if (!document.body.classList.contains('modal-open')) handleInput(e.clientX, e.clientY); });
+    window.addEventListener("touchstart", (e) => { if (!document.body.classList.contains('modal-open')) handleInput(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    window.addEventListener("touchmove", (e) => { if (!document.body.classList.contains('modal-open')) { e.preventDefault(); handleInput(e.touches[0].clientX, e.touches[0].clientY); } }, { passive: false });
     window.addEventListener("touchend", () => mouse.active = false);
 
     const BAR_COUNT = 64;
@@ -193,8 +298,7 @@
     function draw(timestamp) {
       const w = canvas.width / (window.devicePixelRatio || 1);
       const h = canvas.height / (window.devicePixelRatio || 1);
-      const innerR = w * 0.12;
-      const outerR = w * 0.35;
+      const innerR = w * 0.12, outerR = w * 0.35;
       
       ctx.clearRect(0, 0, w, h);
       ctx.save();
@@ -204,42 +308,22 @@
         const b = bars[i];
         const angle = (i / BAR_COUNT) * Math.PI * 2;
         let inter = 0;
-
         if (mouse.active) {
           const tx = (innerR + (w * 0.1)) * Math.cos(angle);
           const ty = (innerR + (w * 0.1)) * Math.sin(angle);
           const dist = Math.hypot(tx - mouse.x, ty - mouse.y);
           inter = Math.max(0, 1 - dist / (w * 0.3)) * 0.5;
         }
-
-        const noise = 0.5 + 0.5 * Math.sin(timestamp * 0.002 + i * 0.2);
-        const intensity = b.base + (noise * 0.3) + inter;
-
-        const x0 = innerR * Math.cos(angle), y0 = innerR * Math.sin(angle);
-        const x1 = (innerR + (outerR - innerR) * intensity) * Math.cos(angle);
-        const y1 = (innerR + (outerR - innerR) * intensity) * Math.sin(angle);
-
+        const intensity = b.base + (0.5 + 0.5 * Math.sin(timestamp * 0.002 + i * 0.2)) * 0.3 + inter;
         ctx.strokeStyle = `rgba(255,255,255,${0.1 + inter})`;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(innerR * Math.cos(angle), innerR * Math.sin(angle));
+        ctx.lineTo((innerR + (outerR - innerR) * intensity) * Math.cos(angle), (innerR + (outerR - innerR) * intensity) * Math.sin(angle));
+        ctx.stroke();
       }
       ctx.restore();
       requestAnimationFrame(draw);
     }
-
-    // Modal Logic
-    const popup = document.getElementById("infoPopup");
-    const openPopup = (id) => {
-      document.getElementById("popupBody").innerHTML = document.getElementById(id).innerHTML;
-      popup.classList.add("active");
-      document.body.classList.add("modal-open");
-    };
-    document.getElementById("openLoom").onclick = (e) => { e.preventDefault(); openPopup("loomTemplate"); };
-    document.getElementById("openManifesto").onclick = () => openPopup("manifestoTemplate");
-    document.getElementById("closePopup").onclick = () => {
-      popup.classList.remove("active");
-      document.body.classList.remove("modal-open");
-    };
 
     resize();
     requestAnimationFrame(draw);
