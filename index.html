@@ -17,12 +17,11 @@
     html,
     body {
       height: 100%;
-      /* Updated to pure black background with a subtle deep-gray top glow */
       background: radial-gradient(circle at top, #0a0a0a 0%, #050505 40%, #000 100%);
       background-color: #000; 
       overflow: hidden;
       font-family: "Inter", -apple-system, system-ui, sans-serif;
-      touch-action: none;
+      touch-action: none; /* Prevents default browser touch actions to allow custom interaction */
       color: #999;
     }
 
@@ -372,16 +371,16 @@
     <h3>The Interoperability Layer</h3>
     <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away the idiosyncratic API structures, tokenization schemas, and prompt-template requirements of diverse model families.</p>
     <ul>
-      <li><strong>Normalized Messaging Interface</strong> Every node in the system communicates via a unified schema.</li>
-      <li><strong>State Synchronization</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
-      <li><strong>Zero-Copy Context Routing</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
+      <li><strong>Normalized Messaging Interface:</strong> Every node in the system communicates via a unified schema.</li>
+      <li><strong>State Synchronization:</strong> Rather than passing linear history, Loom™ maintains a shared context object. This ensures every model is contextually aware of the full conversational state.</li>
+      <li><strong>Zero-Copy Context Routing:</strong> Efficiently manages turn-taking and message injection to minimize latency while maximizing the semantic density.</li>
     </ul>
     <h3>Collective Intelligence via Consensus Formation</h3>
     <p>Loom™ moves beyond simple "best-of-N" sampling. It facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity outputs.</p>
     <ul>
-      <li><strong>Diagnostic Disagreement</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
-      <li><strong>Weighted Consensus</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
-      <li><strong>Cross-Model Peer Review</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
+      <li><strong>Diagnostic Disagreement:</strong> Areas of divergent reasoning between models serve as high-signal diagnostic surfaces, allowing operators to pinpoint logic bifurcation.</li>
+      <li><strong>Weighted Consensus:</strong> By synthesizing the outputs of multiple independent architectures, the system generates a reliability metric.</li>
+      <li><strong>Cross-Model Peer Review:</strong> Models critique and refine the reasoning of others, utilizing diverse inductive biases to eliminate hallucinations.</li>
     </ul>
     <div class="accent-section">
       <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
@@ -411,6 +410,14 @@
     const popupBody = document.getElementById("popupBody");
     const videoModal = document.getElementById("videoModal");
     const playerFrame = document.getElementById("playerFrame");
+
+    // Unified input handler
+    function handleInput(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = clientX - (rect.left + rect.width / 2);
+      mouse.y = clientY - (rect.top + rect.height / 2);
+      mouse.active = true;
+    }
 
     function openPopup(contentId) {
       popupBody.innerHTML = document.getElementById(contentId).innerHTML;
@@ -468,11 +475,26 @@
     window.addEventListener("resize", resize);
     resize();
 
+    // Event Listeners for Interaction
     window.addEventListener("mousemove", (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - (rect.left + rect.width / 2);
-      mouse.y = e.clientY - (rect.top + rect.height / 2);
-      mouse.active = true;
+      handleInput(e.clientX, e.clientY);
+    });
+
+    window.addEventListener("touchstart", (e) => {
+      if (e.touches.length > 0) {
+        handleInput(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches.length > 0) {
+        e.preventDefault(); // Prevents page scrolling while interacting with the spiral
+        handleInput(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchend", () => {
+      mouse.active = false; // Returns animation to idle state on release
     });
 
     const BAR_COUNT = 64;
