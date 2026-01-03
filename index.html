@@ -244,6 +244,7 @@
       margin-top: 50px;
       padding-top: 30px;
       border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      scroll-margin-top: 20px;
     }
 
     .demo-link {
@@ -271,6 +272,22 @@
       letter-spacing: 0.1em;
       display: block;
       margin-bottom: 4px;
+    }
+
+    .jump-link {
+      display: block;
+      text-align: center;
+      margin-top: -30px;
+      margin-bottom: 40px;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      transition: 0.3s;
+    }
+
+    .jump-link:hover {
+      color: #fff;
     }
 
     #videoModal {
@@ -419,28 +436,40 @@
   <div id="loomTemplate">
     <h2 class="main-title">Loom™</h2>
     <span class="subtitle">The Coordination Substrate for the Reasoning Era</span>
-    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning. 
-      <strong>Loom™</strong> shifts the architecture from discrete inference calls to a <strong>unified Reasoning Fabric</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system via our proprietary <strong>Linguistic Bridge™</strong>.
+    <a href="#demos" class="jump-link">VIEW FIELD RECORDINGS ↓</a>
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning.
+      <strong>Loom™</strong> shifts the architecture from discrete inference calls to a <strong>unified Reasoning
+        Fabric</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system via our
+      proprietary <strong>Linguistic Bridge™</strong>.
     </p>
     <h3>The Linguistic Bridge™</h3>
-    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away idiosyncratic API structures and tokenization schemas, allowing N models to communicate in real-time.</p>
+    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away idiosyncratic API structures and
+      tokenization schemas, allowing N models to communicate in real-time.</p>
     <ul>
-      <li><strong>Semantic Normalization:</strong> Maps disparate model logics into a unified workspace, enabling models to peer-review and cross-reference reasoning steps.</li>
-      <li><strong>Round-Robin State Synchronization:</strong> A deterministic protocol ensuring every participant in the Fabric has 100% context of the collective reasoning history, preventing contextual drift.</li>
-      <li><strong>Local Sovereignty:</strong> Built on .NET Core for cross-platform performance, the protocol runs entirely on your local hardware, requiring no external K MEANS LLC infrastructure.</li>
+      <li><strong>Semantic Normalization:</strong> Maps disparate model logics into a unified workspace, enabling models
+        to peer-review and cross-reference reasoning steps.</li>
+      <li><strong>Round-Robin State Synchronization:</strong> A deterministic protocol ensuring every participant in the
+        Fabric has 100% context of the collective reasoning history, preventing contextual drift.</li>
+      <li><strong>Local Sovereignty:</strong> Built on .NET Core for cross-platform performance, the protocol runs
+        entirely on your local hardware, requiring no external K MEANS LLC infrastructure.</li>
     </ul>
     <h3>Collective Intelligence via Consensus Formation</h3>
-    <p>Loom™ facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity, verifiable outputs.</p>
+    <p>Loom™ facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate
+      high-fidelity, verifiable outputs.</p>
     <ul>
-      <li><strong>Model Convergence:</strong> Forces disparate inductive biases into a weighted consensus, effectively neutralizing individual model hallucinations.</li>
-      <li><strong>Domain-Expert Synthesis:</strong> Facilitates real-time deep research where specialized models (Legal, Medical, Code) cross-pollinate findings within a single session.</li>
-      <li><strong>Human-AI Group Dynamics:</strong> A new paradigm supporting synchronized group chats between a human moderator and multiple autonomous models.</li>
+      <li><strong>Model Convergence:</strong> Forces disparate inductive biases into a weighted consensus, effectively
+        neutralizing individual model hallucinations.</li>
+      <li><strong>Domain-Expert Synthesis:</strong> Facilitates real-time deep research where specialized models (Legal,
+        Medical, Code) cross-pollinate findings within a single session.</li>
+      <li><strong>Human-AI Group Dynamics:</strong> A new paradigm supporting synchronized group chats between a human
+        moderator and multiple autonomous models.</li>
     </ul>
-    <div class="accent-section">
+    <div class="accent-section" id="demos">
       <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
       <a href="#" class="demo-link" data-video="https://youtu.be/meHOvmQUnmI">
         <strong>[Demo 01: Adversarial Consolidation & Consensus Jurisprudence]</strong>
-        Watch the Linguistic Bridge synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
+        Watch the Linguistic Bridge synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent
+        logic friction.
       </a>
       <a href="#" class="loom-link" id="viewTranscript01"
         style="font-size: 9px; display: block; margin-top: -10px; margin-bottom: 20px;">
@@ -449,7 +478,8 @@
 
       <a href="#" class="demo-link" data-video="https://youtu.be/Agu9mOo_1FA">
         <strong>[Demo 02: Diagnostic Signal Processing & Predictive Divergence]</strong>
-        Watch the Reasoning Fabric parse high-entropy data to isolate emergent variables and reconcile contradictory scientific hypotheses.
+        Watch the Reasoning Fabric parse high-entropy data to isolate emergent variables and reconcile contradictory
+        scientific hypotheses.
       </a>
       <a href="#" class="loom-link" id="viewTranscript02"
         style="font-size: 9px; display: block; margin-top: -10px; margin-bottom: 20px;">
@@ -458,7 +488,8 @@
 
       <a href="#" class="demo-link" data-video="https://youtu.be/xHLbLx3dC7w">
         <strong>[Demo 03: Abstract Innovation & Synthetic Formalization]</strong>
-        Watch the models interlace new mathematical primitives with established formalisms to bridge expressive gaps in symbolic logic.
+        Watch the models interlace new mathematical primitives with established formalisms to bridge expressive gaps in
+        symbolic logic.
       </a>
       <a href="#" class="loom-link" id="viewTranscript03"
         style="font-size: 9px; display: block; margin-top: -10px; margin-bottom: 20px;">
@@ -476,7 +507,8 @@
 
   <div id="transcriptTemplate">
     <div class="transcript-wrapper">
-      <pre style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
+      <pre
+        style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
 
         <p><strong>pretlow.stevenson</strong>: Let’s architect a micro-society simulation. Each model: propose a foundational 'prime directive' based on your internal weights for stability and freedom. Once proposed, identify the first existential decision where your rules create immediate friction, and synthesize a singular "shared starting state" that accounts for these initial edge cases.</p>
         <p><strong>gpt52</strong>: #pretlow.stevenson  
@@ -886,7 +918,8 @@
 
   <div id="transcriptTemplate2">
     <div class="transcript-wrapper">
-      <pre style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
+      <pre
+        style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
 
         <p><strong>pretlow.stevenson</strong>: Identify a natural phenomenon lacking a definitive scientific explanation. Each model: propose a distinct hypothesis based on your specific inductive biases. Then, audit your peers' takes to select the most logically resilient starting point, flagging the "latent flaws" where your internal weights still diverge.</p>
         <p><strong>gpt52</strong>: #pretlow.stevenson Natural phenomenon: **ball lightning** (luminous spheres reported during/after thunderstorms; lab analogs exist but no single, definitive mechanism explains the full range of observations).
@@ -1332,7 +1365,8 @@
 
   <div id="transcriptTemplate3">
     <div class="transcript-wrapper">
-      <pre style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
+      <pre
+        style="white-space: pre-wrap; overflow-wrap: break-word; color: #999; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;">
 
         <p><strong>pretlow.stevenson</strong>: Identify a mathematical or logical problem that current formalisms cannot express cleanly. Each model: isolate a specific "expressive gap" based on your internal training on edge-case proofs. Audit your peers' limitations to identify the primary "blocker"—whether notational, operator-based, or a deeper inconsistency—and propose a new "primitive building block" to solve it, defining its behavior in a vacuum.</p>
         <p><strong>gpt52</strong>: #pretlow.stevenson An expressive gap that shows up repeatedly in “edge-case proofs” is the lack of a *first-class, compositional notion of computational resources with semantic content* inside mainstream foundations.
@@ -2000,12 +2034,12 @@
             e.preventDefault();
             // Get the ID suffix (e.g., '01', '02', '03')
             const idSuffix = link.id.replace('viewTranscript', '');
-            
+
             // Map the suffix to the correct template ID
             let templateId = 'transcriptTemplate'; // Default for 01
             if (idSuffix === '02') templateId = 'transcriptTemplate2';
             if (idSuffix === '03') templateId = 'transcriptTemplate3';
-            
+
             const template = document.getElementById(templateId);
             if (template) {
               playerFrame.innerHTML = template.innerHTML;
