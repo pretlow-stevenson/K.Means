@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Loom™ | Reasoning Fabric Protocol</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Core Styles from index.html */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #050505;
+      color: #999;
+      font-family: "Inter", -apple-system, system-ui, sans-serif;
+      line-height: 1.8;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      scroll-behavior: smooth; /* Enables smooth jumping */
+    }
+    .main-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .main-nav a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: 0.4s;
+    }
+    .main-nav a:hover { color: #fff; }
+
+    .content-container {
+      max-width: 850px;
+      width: 100%;
+      margin-top: 60px;
+      background: #050505;
+    }
+
+    h2.main-title { font-family: 'Bodoni Moda', serif; font-size: 32px; color: #fff; text-align: center; margin-bottom: 5px; }
+    .subtitle { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 40px; }
+    
+    /* Style for the new Jump Link */
+    .jump-link {
+      display: block;
+      text-align: center;
+      margin-top: -30px;
+      margin-bottom: 40px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      transition: 0.3s;
+    }
+    .jump-link:hover { color: #fff; }
+
+    h3 { font-family: 'Bodoni Moda', serif; font-style: italic; color: #fff; margin: 40px 0 15px; font-size: 18px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 15px; }
+    p { margin-bottom: 1.5em; font-size: 14px; font-weight: 300; }
+    strong { color: #fff; font-weight: 400; }
+    ul { margin-bottom: 30px; list-style: none; }
+    li { margin-bottom: 18px; font-size: 13px; padding-left: 25px; position: relative; }
+    li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 1px; background: rgba(255,255,255,0.3); }
+    .accent-section { margin-top: 50px; padding-top: 30px; border-top: 1px dashed rgba(255,255,255,0.1); scroll-margin-top: 80px; }
+    .demo-link { display: block; color: #ccc; text-decoration: none; font-size: 13px; margin-bottom: 20px; padding: 15px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.01); transition: 0.3s; }
+    .demo-link:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #fff; }
+    .demo-link strong { color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+    .loom-link { color: rgba(255, 255, 255, 0.4); text-decoration: none; font-size: 9px; letter-spacing: 0.35em; cursor: pointer; transition: 0.4s; }
+    .loom-link:hover { color: #fff; }
+
+    /* Video/Transcript Modal */
+    #videoModal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.98); align-items: center; justify-content: center; padding: 20px; }
+    #videoModal.active { display: flex; }
+    .video-container { width: 95vw; max-width: 900px; aspect-ratio: 16/9; background: #000; position: relative; display: flex; flex-direction: column; }
+    .video-close { position: absolute; top: -40px; right: 0; color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
+    .transcript-wrapper { width: 100%; height: 100%; overflow-y: auto; padding: 40px; background: #050505; color: #999; font-size: 13px; line-height: 1.7; font-family: 'Courier New', monospace; }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <a href="index.html">← Return to KMEANS.AI</a>
+  </nav>
+
+  <div class="content-container">
+    <h2 class="main-title">Loom™</h2>
+    <span class="subtitle">The Coordination Substrate for the Reasoning Era</span>
+    
+    <a href="#demos" class="jump-link">VIEW FIELD RECORDINGS ↓</a>
+
+    <p>The current LLM paradigm treats frontier models as isolated oracles, creating silos of reasoning.
+      <strong>Loom™</strong> shifts the architecture from discrete inference calls to a <strong>unified Reasoning Fabric</strong>, enabling heterogeneous models to operate as a coordinated, multi-agent system via our proprietary <strong>Linguistic Bridge™</strong>.
+    </p>
+
+    <h3>The Linguistic Bridge™</h3>
+    <p>Loom™ functions as a <strong>normalization protocol</strong> that abstracts away idiosyncratic API structures and tokenization schemas, allowing N models to communicate in real-time.</p>
+    <ul>
+      <li><strong>Semantic Normalization:</strong> Maps disparate model logics into a unified workspace, enabling models to peer-review and cross-reference reasoning steps.</li>
+      <li><strong>Round-Robin State Synchronization:</strong> A deterministic protocol ensuring every participant in the Fabric has 100% context of the collective reasoning history, preventing contextual drift.</li>
+      <li><strong>Local Sovereignty:</strong> Built on .NET Core for cross-platform performance, the protocol runs entirely on your local hardware, requiring no external K MEANS LLC infrastructure.</li>
+    </ul>
+
+    <h3>Collective Intelligence via Consensus Formation</h3>
+    <p>Loom™ facilitates <strong>adversarial and collaborative reasoning</strong> between models to generate high-fidelity, verifiable outputs.</p>
+    <ul>
+      <li><strong>Model Convergence:</strong> Forces disparate inductive biases into a weighted consensus, effectively neutralizing individual model hallucinations.</li>
+      <li><strong>Domain-Expert Synthesis:</strong> Facilitates real-time deep research where specialized models (Legal, Medical, Code) cross-pollinate findings within a single session.</li>
+      <li><strong>Human-AI Group Dynamics:</strong> A new paradigm supporting synchronized group chats between a human moderator and multiple autonomous models.</li>
+    </ul>
+
+    <div class="accent-section" id="demos">
+      <span class="subtitle" style="margin-bottom: 20px;">Field Recordings: Protocol in Action</span>
+      <a href="#" class="demo-link" data-video="https://youtu.be/meHOvmQUnmI">
+        <strong>[Demo 01: Adversarial Consolidation & Consensus Jurisprudence]</strong>
+        Watch the Linguistic Bridge synchronize GPT, Gemini, and Claude to architect a micro-society and resolve latent logic friction.
+      </a>
+      <a href="#" class="loom-link" id="viewTranscript01" style="display: block; margin-top: -10px; margin-bottom: 20px;">&nbsp; &nbsp;INSPECT TRANSCRIPT</a>
+
+      <a href="#" class="demo-link" data-video="https://youtu.be/Agu9mOo_1FA">
+        <strong>[Demo 02: Diagnostic Signal Processing & Predictive Divergence]</strong>
+        Watch the Reasoning Fabric parse high-entropy data to isolate emergent variables and reconcile contradictory scientific hypotheses.
+      </a>
+      <a href="#" class="loom-link" id="viewTranscript02" style="display: block; margin-top: -10px; margin-bottom: 20px;">&nbsp; &nbsp;INSPECT TRANSCRIPT</a>
+
+      <a href="#" class="demo-link" data-video="https://youtu.be/xHLbLx3dC7w">
+        <strong>[Demo 03: Abstract Innovation & Synthetic Formalization]</strong>
+        Watch the models interlace new mathematical primitives with established formalisms to bridge expressive gaps in symbolic logic.
+      </a>
+      <a href="#" class="loom-link" id="viewTranscript03" style="display: block; margin-top: -10px; margin-bottom: 20px;">&nbsp; &nbsp;INSPECT TRANSCRIPT</a>
+    </div>
+
+    <p style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; font-style: italic; color: rgba(255,255,255,0.3); font-size: 13px;">
+      Loom™ transforms AI from a single-point failure system into a distributed reasoning fabric, delivering a measurable increase in robustness and cognitive diversity.
+    </p>
+  </div>
+
+  <div id="videoModal">
+    <div class="video-container">
+      <span class="video-close" id="closeVideo">EXIT THEATER</span>
+      <div id="playerFrame" style="width:100%; height:100%;"></div>
+    </div>
+  </div>
+
+  <script>
+    /* Modal Logic from index.html */
+    const videoModal = document.getElementById("videoModal");
+    const playerFrame = document.getElementById("playerFrame");
+
+    document.querySelectorAll('.demo-link').forEach(link => {
+      link.onclick = (e) => {
+        e.preventDefault();
+        const vidUrl = link.getAttribute('data-video');
+        let videoId = vidUrl.includes('youtu.be/') ? vidUrl.split('youtu.be/')[1] : vidUrl.split('v=')[1];
+        playerFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" style="width:100%;height:100%"></iframe>`;
+        videoModal.classList.add("active");
+      }
+    });
+
+    document.getElementById("closeVideo").onclick = () => { videoModal.classList.remove("active"); playerFrame.innerHTML = ""; };
+    window.onkeydown = (e) => { if (e.key === "Escape") document.getElementById("closeVideo").click(); };
+  </script>
+</body>
+</html>
