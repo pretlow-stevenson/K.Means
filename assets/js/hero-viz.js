@@ -57,11 +57,10 @@ export function startHeroViz() {
     "touchmove",
     (event) => {
       if (event.touches.length > 0) {
-        event.preventDefault();
         handleInput(event.touches[0].clientX, event.touches[0].clientY);
       }
     },
-    { passive: false }
+    { passive: true }
   );
   window.addEventListener("touchend", () => {
     mouse.active = false;
