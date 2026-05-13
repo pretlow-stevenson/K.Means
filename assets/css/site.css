@@ -27,12 +27,6 @@ button {
   font: inherit;
 }
 
-body.modal-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
