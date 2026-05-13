@@ -195,13 +195,13 @@ sup {
   display: grid;
   place-items: center;
   justify-self: center;
-  min-height: min(34vw, 420px);
+  min-height: min(38vw, 480px);
   transform: translateY(-4%);
 }
 
 .hero-visual canvas {
-  width: clamp(220px, 28vw, 380px);
-  height: clamp(220px, 28vw, 380px);
+  width: clamp(260px, 31vw, 440px);
+  height: clamp(260px, 31vw, 440px);
   aspect-ratio: 1;
   display: block;
 }
@@ -213,18 +213,12 @@ sup {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: clamp(72px, 7.4vw, 92px);
-  min-height: clamp(72px, 7.4vw, 92px);
-  border: 1px solid rgba(0, 0, 0, 0.018);
-  border-radius: 50%;
-  background: rgba(247, 247, 245, 0.08);
-  box-shadow: 0 0 18px rgba(247, 247, 245, 0.54);
   transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0.38);
-  font-family: var(--font-mono);
-  font-size: clamp(8px, 0.72vw, 10px);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  color: #18233c;
+  font-family: var(--font-sans);
+  font-size: clamp(76px, 9vw, 124px);
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1;
   text-transform: uppercase;
   pointer-events: none;
