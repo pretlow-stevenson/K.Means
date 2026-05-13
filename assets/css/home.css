@@ -210,11 +210,22 @@ sup {
   position: absolute;
   top: 50%;
   left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(72px, 7.4vw, 92px);
+  min-height: clamp(72px, 7.4vw, 92px);
+  border: 1px solid rgba(0, 0, 0, 0.018);
+  border-radius: 50%;
+  background: rgba(247, 247, 245, 0.08);
+  box-shadow: 0 0 18px rgba(247, 247, 245, 0.54);
   transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0.42);
-  font-size: clamp(10px, 1.2vw, 13px);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: var(--font-mono);
+  font-size: clamp(8px, 0.72vw, 10px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
   text-transform: uppercase;
   pointer-events: none;
 }
