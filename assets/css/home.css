@@ -427,12 +427,7 @@ sup {
   }
 
   .hero-visual {
-    min-height: 190px;
-  }
-
-  .hero-visual canvas {
-    width: min(68vw, 220px);
-    height: min(68vw, 220px);
+    display: none;
   }
 
   .hero-actions,
