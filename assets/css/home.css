@@ -67,9 +67,9 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.48fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.5fr);
   align-items: center;
-  gap: clamp(24px, 4vw, 56px);
+  gap: clamp(18px, 2.6vw, 40px);
   min-height: calc(78svh - 74px);
   padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 72px) clamp(64px, 8vw, 96px);
 }
@@ -194,9 +194,9 @@ sup {
   position: relative;
   display: grid;
   place-items: center;
-  justify-self: center;
+  justify-self: start;
   min-height: min(38vw, 480px);
-  transform: translateY(-4%);
+  transform: translate(-3%, -4%);
 }
 
 .hero-visual canvas {
