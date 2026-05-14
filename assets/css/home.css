@@ -216,7 +216,7 @@ sup {
   transform: translate(-50%, -50%);
   color: #18233c;
   font-family: var(--font-sans);
-  font-size: clamp(76px, 9vw, 124px);
+  font-size: clamp(90px, 10.5vw, 146px);
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1;

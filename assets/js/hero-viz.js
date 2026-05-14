@@ -30,7 +30,7 @@ function createNodes() {
       angle: progress * Math.PI * 2 + Math.sin(index * 1.7) * 0.08,
       drift: 0.014 + (index % 5) * 0.002,
       phase: index * 0.71,
-      radius: 0.42 + ((index * 13) % 8) / 100,
+      radius: 0.43 + ((index * 13) % 6) / 100,
       size: 0.008 + ((index * 7) % 8) / 1000
     };
   });
@@ -111,7 +111,7 @@ export function startHeroViz() {
   function drawNetwork(size, elapsed) {
     const positions = nodes.map((node, index) => {
       const angle = node.angle + elapsed * node.drift;
-      const pulse = Math.sin(elapsed * 0.65 + node.phase) * 0.022;
+      const pulse = Math.sin(elapsed * 0.65 + node.phase) * 0.012;
       const radius = size * (node.radius + pulse);
       return {
         angle,
@@ -150,8 +150,8 @@ export function startHeroViz() {
   }
 
   function drawBars(size, elapsed, dt) {
-    const inner = size * 0.33;
-    const outer = size * 0.43;
+    const inner = size * 0.318;
+    const outer = size * 0.455;
 
     ctx.lineCap = "butt";
 
@@ -193,22 +193,22 @@ export function startHeroViz() {
   }
 
   function drawCore(size) {
-    const coreRadius = size * 0.265;
-    const ringRadius = size * 0.292;
+    const coreRadius = size * 0.282;
+    const ringRadius = size * 0.305;
 
     ctx.fillStyle = "rgba(255, 255, 255, 0.94)";
     ctx.beginPath();
     ctx.arc(0, 0, coreRadius, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.strokeStyle = "rgba(20, 30, 55, 0.94)";
-    ctx.lineWidth = Math.max(3, size * 0.014);
+    ctx.strokeStyle = "rgba(20, 30, 55, 0.64)";
+    ctx.lineWidth = Math.max(2.2, size * 0.009);
     ctx.beginPath();
     ctx.arc(0, 0, ringRadius, 0, Math.PI * 2);
     ctx.stroke();
 
-    ctx.strokeStyle = "rgba(20, 30, 55, 0.72)";
-    ctx.lineWidth = Math.max(1.5, size * 0.005);
+    ctx.strokeStyle = "rgba(20, 30, 55, 0.48)";
+    ctx.lineWidth = Math.max(1.2, size * 0.0038);
     ctx.beginPath();
     ctx.arc(0, 0, coreRadius * 0.96, 0, Math.PI * 2);
     ctx.stroke();
