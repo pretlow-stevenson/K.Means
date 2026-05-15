@@ -182,6 +182,7 @@ sup {
 .capability-item h3,
 .recording-item h3 {
   margin-bottom: 10px;
+  overflow-wrap: anywhere;
 }
 
 .recording-list {
