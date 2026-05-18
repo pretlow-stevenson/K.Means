@@ -67,9 +67,10 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.5fr);
+  grid-template-columns: minmax(0, 680px) minmax(170px, 260px);
   align-items: center;
-  gap: clamp(18px, 2.6vw, 40px);
+  justify-content: start;
+  gap: clamp(24px, 4vw, 56px);
   min-height: calc(78svh - 74px);
   padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 72px) clamp(64px, 8vw, 96px);
 }
@@ -205,23 +206,12 @@ sup {
   display: grid;
   place-items: center;
   justify-self: start;
-  min-height: min(38vw, 480px);
-  transform: translate(-3%, -4%);
-}
-
-.hero-visual canvas {
-  position: relative;
-  z-index: 2;
-  width: clamp(260px, 31vw, 440px);
-  height: clamp(260px, 31vw, 440px);
-  aspect-ratio: 1;
-  display: block;
+  min-height: auto;
+  transform: translate(-4%, -4%);
 }
 
 .hero-logo {
-  position: absolute;
-  z-index: 1;
-  width: clamp(210px, 24vw, 330px);
+  width: clamp(150px, 18vw, 250px);
   height: auto;
   display: block;
   pointer-events: none;
@@ -419,13 +409,11 @@ sup {
   }
 
   .hero-visual {
-    min-height: 210px;
     transform: none;
   }
 
-  .hero-visual canvas {
-    width: min(62vw, 260px);
-    height: min(62vw, 260px);
+  .hero-logo {
+    width: min(48vw, 220px);
   }
 
   .split-section,
