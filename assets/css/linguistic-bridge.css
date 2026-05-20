@@ -114,12 +114,45 @@ sup {
   padding: clamp(70px, 11vw, 136px) clamp(20px, 5vw, 72px) clamp(64px, 8vw, 104px);
 }
 
+.page-hero-with-art {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(170px, 260px);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: center;
+  justify-content: start;
+}
+
+.page-hero-copy {
+  max-width: 780px;
+}
+
+.page-hero-with-art h1 {
+  max-width: 760px;
+  font-size: clamp(44px, 5.8vw, 74px);
+}
+
 .page-hero p:not(.eyebrow) {
   max-width: 780px;
   margin-top: 26px;
   color: rgba(0, 0, 0, 0.64);
   font-size: clamp(17px, 2vw, 21px);
   line-height: 1.65;
+}
+
+.page-hero-art {
+  display: grid;
+  place-items: center;
+  justify-self: start;
+  width: clamp(170px, 19vw, 260px);
+  min-height: clamp(230px, 26vw, 340px);
+}
+
+.page-hero-art img {
+  display: block;
+  width: clamp(128px, 12vw, 178px);
+  height: auto;
+  opacity: 0.86;
+  pointer-events: none;
 }
 
 .section {
@@ -298,10 +331,17 @@ sup {
   }
 
   .split-section,
+  .page-hero-with-art,
   .capability-item,
   .recording-item,
   .contact-item {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero-art {
+    justify-self: start;
+    min-height: auto;
+    padding-top: 6px;
   }
 
   .recording-actions,
@@ -318,6 +358,10 @@ sup {
 
   .site-nav a {
     font-size: 10px;
+  }
+
+  .page-hero-art {
+    display: none;
   }
 }
 
