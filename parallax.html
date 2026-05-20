@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Parallax is the cloud-scale consensus engine in the K MEANS AI Symphony suite, with selectable execution modes for deliberative and parallel multi-model consensus."
+    content="Parallax is the cloud-scale consensus engine in the K MEANS AI Symphony suite, with selectable execution modes, signaling, and traceable multi-model consensus."
   />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
@@ -40,7 +40,7 @@
       <p>
         Parallax is the cloud-side consensus engine in the Symphony suite. It runs selectable multi-model workflows for
         deliberative reasoning, parallel synthesis, or threshold-based confirmation, then returns integrated results with
-        durable state and trace metadata.
+        durable state, signaling, and trace metadata.
       </p>
     </section>
 
@@ -130,6 +130,16 @@
         <article class="capability-item">
           <span>03</span>
           <div>
+            <h3>Signaling</h3>
+            <p>
+              Lightweight workflow signals help Parallax track whether reasoners have completed their contribution,
+              aligned with an emerging result, or determined that the prompt cannot be handled confidently.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>04</span>
+          <div>
             <h3>Neutral integration</h3>
             <p>
               A separate integrator reviews reasoner outputs or reasoning traces and produces a unified answer with
@@ -138,12 +148,12 @@
           </div>
         </article>
         <article class="capability-item">
-          <span>04</span>
+          <span>05</span>
           <div>
             <h3>Persisted results</h3>
             <p>
-              Operation state, trace metadata, confidence signals, and final outputs can be retained for downstream
-              systems that need replayability, auditability, or later review.
+              Operation state, signaling metadata, reasoning traces, confidence signals, and final outputs can be
+              retained for downstream systems that need replayability, auditability, or later review.
             </p>
           </div>
         </article>
@@ -163,6 +173,11 @@
         <p>
           One-Shot Synthesis and One-Shot Confirmation form the parallel path: efficient consensus workflows for
           synthesis or threshold-based validation when the task does not require full sequential deliberation.
+        </p>
+        <p>
+          Across both families, signaling gives Parallax an operational layer around model collaboration. It helps the
+          system recognize progress, surface uncertainty, distinguish strong consensus from weak alignment, and preserve
+          a clearer view of how the final answer was reached.
         </p>
         <div class="section-actions">
           <a class="text-link section-link" href="index.html#symphony">Explore Symphony</a>
