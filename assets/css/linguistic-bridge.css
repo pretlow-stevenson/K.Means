@@ -380,10 +380,10 @@ sup {
 }
 
 .site-footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
+  gap: 18px 32px;
   padding: 34px clamp(20px, 5vw, 72px);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -416,6 +416,13 @@ sup {
   color: #000;
 }
 
+.footer-copyright {
+  grid-column: 1 / -1;
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 12px;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
@@ -442,10 +449,13 @@ sup {
     padding-top: 6px;
   }
 
-  .recording-actions,
-  .site-footer {
+  .recording-actions {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
   }
 }
 
