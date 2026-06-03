@@ -262,6 +262,14 @@ sup {
   margin-bottom: clamp(32px, 5vw, 56px);
 }
 
+.section-intro {
+  max-width: 720px;
+  margin-top: 18px;
+  color: rgba(0, 0, 0, 0.62);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
 .split-section {
   display: grid;
   grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1fr);
