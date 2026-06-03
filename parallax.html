@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="/assets/images/kmeans-mark.png" />
   <meta
     name="description"
-    content="Parallax is the cloud-scale consensus engine in the K MEANS AI Symphony suite, with selectable execution modes, signaling, and traceable multi-model consensus."
+    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for durable multi-model reasoning operations, runtime signaling, trace metadata, provider flexibility, and Azure-native deployment."
   />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
@@ -17,7 +17,7 @@
     gtag('js', new Date());
     gtag('config', 'G-HVW5RY02RQ');
   </script>
-  <title>Parallax | Cloud-Scale Consensus Engine | K MEANS AI</title>
+  <title>Symphony Parallax™ | Cloud-Scale Consensus Engine | K MEANS AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css" />
   <link rel="stylesheet" href="assets/css/linguistic-bridge.css?v=waveform-hero" />
@@ -38,12 +38,12 @@
   <main>
     <section class="page-hero page-hero-with-art" aria-labelledby="parallax-title">
       <div class="page-hero-copy">
-        <p class="eyebrow">Parallax</p>
+        <p class="eyebrow">Symphony Parallax<sup>™</sup></p>
         <h1 id="parallax-title">Cloud-scale consensus for multi-model reasoning.</h1>
         <p>
-          Parallax is the cloud-side consensus engine in the Symphony suite. It runs selectable multi-model workflows for
-          deliberative reasoning, parallel synthesis, or threshold-based confirmation, then returns integrated results with
-          durable state, signaling, and trace metadata.
+          Symphony Parallax™ turns Linguistic Bridge™ into durable cloud infrastructure. It runs multi-model consensus
+          operations, tracks the shape of agreement and uncertainty, and returns integrated answers with the metadata
+          teams need to inspect what happened after the answer is produced.
         </p>
       </div>
       <div class="page-hero-art hero-art-parallax" aria-hidden="true">
@@ -58,13 +58,13 @@
       </div>
       <div class="text-stack">
         <p>
-          Maestro gives human operators a local console for conducting multi-model reasoning. Parallax extends the same
-          consensus architecture into an automated cloud service for repeatable backend execution.
+          Symphony Maestro™ is the local, human-directed console experience for conducting multi-model reasoning.
+          Symphony Parallax™ is the cloud execution layer for the same consensus architecture.
         </p>
         <p>
-          Parallax is being prepared for release, with more public information coming as it moves toward its fall launch
-          window. Its role is to make consensus workflows available beyond the console as durable cloud
-          infrastructure with queue processing, retries, and deployment support.
+          A caller submits an operation through a scoped API, Parallax dispatches it through the configured persona and
+          model set, runs the selected consensus mode, records traceable metadata, and returns a synthesized or confirmed
+          result without exposing the underlying queue, database, or storage substrate to the client.
         </p>
       </div>
     </section>
@@ -72,7 +72,7 @@
     <section class="section capability-section" aria-labelledby="modes-title">
       <div class="section-heading">
         <p class="eyebrow">Execution Modes</p>
-        <h2 id="modes-title">Selectable paths for different consensus needs.</h2>
+        <h2 id="modes-title">Two operating families for different consensus needs.</h2>
       </div>
       <div class="capability-list">
         <article class="capability-item">
@@ -80,8 +80,8 @@
           <div>
             <h3>Sequential Bridge</h3>
             <p>
-              The default Linguistic Bridge™ mode. Parallax calls reasoners sequentially inside each round, so later
-              models receive the evolving shared context before contributing their own critique, refinement, or answer.
+              The full Linguistic Bridge™ path. Reasoners are called sequentially inside each round so later models
+              receive the evolving shared context before contributing. Use this when deliberative continuity matters.
             </p>
           </div>
         </article>
@@ -90,8 +90,8 @@
           <div>
             <h3>One-Shot Synthesis</h3>
             <p>
-              A parallel synthesis mode. Parallax sends the same prompt to all active reasoners at once, collects their
-              independent responses, and asks the integrator to produce one unified answer.
+              A faster parallel composition path. Parallax sends the same prompt to all active reasoners at once, then
+              asks an integrator to synthesize the independent responses into one complete answer.
             </p>
           </div>
         </article>
@@ -100,91 +100,164 @@
           <div>
             <h3>One-Shot Confirmation</h3>
             <p>
-              A parallel validation mode. Parallax compares reasoner responses against a configured consensus
-              threshold and stops the operation when the threshold is not met.
+              A fast validation path. Parallax compares independent reasoner responses against a configured consensus
+              threshold and stops low-confidence or insufficient-consensus outputs instead of presenting them as confirmed.
             </p>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section capability-section" aria-labelledby="capabilities-title">
+    <section class="section split-section" aria-labelledby="signaling-title">
+      <div>
+        <p class="eyebrow">Runtime Signaling</p>
+        <h2 id="signaling-title">Model collaboration becomes operational state.</h2>
+      </div>
+      <div class="text-stack">
+        <p>
+          Parallax includes a lightweight signaling layer around model-language responses. Participant signals help the
+          orchestrator understand whether a model is complete, aligned with the emerging result, or uncertain about the
+          operation.
+        </p>
+        <p>
+          In Sequential Bridge, signals can help skip completed participants, end reasoning early when alignment is strong,
+          or stop when uncertainty makes a result unsafe. In one-shot modes, signals remain useful metadata while the
+          integrator performs final synthesis or confirmation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section capability-section" aria-labelledby="trust-title">
       <div class="section-heading">
-        <p class="eyebrow">Product Shape</p>
-        <h2 id="capabilities-title">Designed for durable, automated consensus operations.</h2>
+        <p class="eyebrow">Operational Trust</p>
+        <h2 id="trust-title">Receipts, fingerprints, traces, and scoped access.</h2>
+      </div>
+      <div class="capability-list">
+        <article class="capability-item">
+          <span>API</span>
+          <div>
+            <h3>Hardened API boundary</h3>
+            <p>
+              Clients submit operations, receive dispatch receipts, and poll status and results through scoped API calls.
+              Direct access to queue, database, and storage resources is not required for ordinary client workflows.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>HASH</span>
+          <div>
+            <h3>Proof-of-processing metadata</h3>
+            <p>
+              Prompt hashes, canonical request hashes, attachment metadata hashes, and receipt correlation let teams
+              confirm what was processed without making raw prompt disclosure the default operational artifact.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>TRACE</span>
+          <div>
+            <h3>Conservative trace posture</h3>
+            <p>
+              Parallax defaults to metadata-oriented traces: participant, model, role, timing, signal, confidence,
+              response hash, response length, and trace availability. Customer-approved diagnostics can opt into
+              restricted full-text capture policies when needed.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>AUTH</span>
+          <div>
+            <h3>Tenant-aware operation tracking</h3>
+            <p>
+              Operation access is tenant-aware and owner-scoped by default, with trace access separated from ordinary
+              result access so review workflows can be governed independently.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section capability-section" aria-labelledby="runtime-title">
+      <div class="section-heading">
+        <p class="eyebrow">Runtime Control</p>
+        <h2 id="runtime-title">Operational control without exposing the reasoning substrate.</h2>
       </div>
       <div class="capability-list">
         <article class="capability-item">
           <span>01</span>
           <div>
-            <h3>Cloud dispatch</h3>
+            <h3>Admin Console</h3>
             <p>
-              Parallax is built for Azure-backed cloud deployment, accepting prompt payloads and file-backed context
-              through a durable dispatch path that can route work into the selected execution mode.
+              Authorized operators can review runtime health, operation status, diagnostics, processing state, capture
+              policy, personas, models, provider posture, and configuration history from a browser-based console.
             </p>
           </div>
         </article>
         <article class="capability-item">
           <span>02</span>
           <div>
-            <h3>Queue processing and retries</h3>
+            <h3>Microsoft Entra-backed admin access</h3>
             <p>
-              Operations can move through managed cloud processing with durable status, retry behavior, and deployment
-              support for scalable backend consensus workloads.
+              The Admin Console is a static browser shell with no embedded provider credentials. Authorization is enforced
+              by the Admin API through customer-owned identity assignments, scopes, and role-aware controls.
             </p>
           </div>
         </article>
         <article class="capability-item">
           <span>03</span>
           <div>
-            <h3>Signaling</h3>
+            <h3>Persona and model management</h3>
             <p>
-              Lightweight workflow signals help Parallax track whether reasoners have completed their contribution,
-              aligned with an emerging result, or determined that the prompt cannot be handled confidently.
+              Operators can adjust active personas and model participants without changing application code. Dependency-aware
+              controls protect against invalid runtime configurations, and model connectivity can be validated with sanitized results.
             </p>
           </div>
         </article>
         <article class="capability-item">
           <span>04</span>
           <div>
-            <h3>Neutral integration</h3>
+            <h3>Demo Suite</h3>
             <p>
-              A separate integrator reviews reasoner outputs or reasoning traces and produces a unified answer with
-              confidence scoring, so the final result is synthesized rather than averaged or voted into place.
-            </p>
-          </div>
-        </article>
-        <article class="capability-item">
-          <span>05</span>
-          <div>
-            <h3>Persisted results</h3>
-            <p>
-              Operation state, signaling metadata, reasoning traces, confidence signals, and final outputs can be
-              retained for downstream systems that need replayability, auditability, or later review.
+              A separate controlled demo surface lets authorized users choose a persona and execution mode, submit a prompt,
+              observe processing, view receipts and hashes, and present the final result without exposing backend infrastructure.
             </p>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section split-section" aria-labelledby="bridge-title">
+    <section class="section split-section" aria-labelledby="provider-title">
       <div>
-        <p class="eyebrow">Two Operating Families</p>
-        <h2 id="bridge-title">Deliberative depth. Parallel speed.</h2>
+        <p class="eyebrow">Provider Flexibility</p>
+        <h2 id="provider-title">Model diversity behind one orchestration contract.</h2>
       </div>
       <div class="text-stack">
         <p>
-          Sequential Bridge is the deeper deliberative path and remains the core Linguistic Bridge™ differentiator:
-          models reason through an evolving shared context rather than answering in isolation.
+          Parallax supports OpenAI, Anthropic, Google Gemini, and OpenAI-compatible model endpoints through provider-specific
+          adapters behind a common orchestration contract.
         </p>
         <p>
-          One-Shot Synthesis and One-Shot Confirmation form the parallel path: efficient consensus workflows for
-          synthesis or threshold-based validation when the task does not require full sequential deliberation.
+          This keeps the product focused on consensus quality rather than a single provider lane: reasoners and integrators
+          can be configured across supported providers while Parallax preserves shared execution, signaling, tracing, and
+          integration semantics.
+        </p>
+      </div>
+    </section>
+
+    <section class="section split-section" aria-labelledby="azure-title">
+      <div>
+        <p class="eyebrow">Azure-Native Deployment</p>
+        <h2 id="azure-title">Prepared for customer-owned cloud environments.</h2>
+      </div>
+      <div class="text-stack">
+        <p>
+          Parallax is designed for customer-owned Azure deployment with Azure Functions, Service Bus-backed processing,
+          Cosmos DB operation state, Blob Storage attachments and traces, Key Vault provider secret references, managed
+          identities, and separate Static Web Apps for browser tools.
         </p>
         <p>
-          Across both families, signaling gives Parallax an operational layer around model collaboration. It helps the
-          system recognize progress, surface uncertainty, distinguish strong consensus from weak alignment, and preserve
-          a clearer view of how the final answer was reached.
+          The deployment posture favors repeatable infrastructure scripts, validation checks, public or private networking
+          profiles, and managed identity access over direct client access to infrastructure resources.
         </p>
         <div class="section-actions">
           <a
