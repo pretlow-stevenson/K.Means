@@ -252,6 +252,32 @@ sup {
     linear-gradient(0deg, transparent 48%, rgba(0, 0, 0, 0.1) 48.4% 48.9%, transparent 49.3%);
 }
 
+.hero-art-maestro img {
+  opacity: 0.9;
+}
+
+.hero-art-maestro::before {
+  width: clamp(190px, 20vw, 280px);
+  height: clamp(190px, 20vw, 280px);
+  z-index: 0;
+  opacity: 0.3;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.05), transparent 62%),
+    linear-gradient(90deg, transparent 28%, rgba(0, 0, 0, 0.15) 28.4% 28.9%, transparent 29.3%),
+    linear-gradient(90deg, transparent 48%, rgba(0, 0, 0, 0.12) 48.4% 48.9%, transparent 49.3%),
+    linear-gradient(90deg, transparent 68%, rgba(0, 0, 0, 0.1) 68.4% 68.9%, transparent 69.3%);
+}
+
+.hero-art-maestro::after {
+  width: clamp(170px, 18vw, 240px);
+  height: clamp(120px, 13vw, 180px);
+  z-index: 1;
+  opacity: 0.26;
+  background:
+    linear-gradient(26deg, transparent 38%, rgba(0, 0, 0, 0.18) 38.2% 38.8%, transparent 39%),
+    linear-gradient(154deg, transparent 38%, rgba(0, 0, 0, 0.12) 38.2% 38.8%, transparent 39%);
+}
+
 .section {
   padding: clamp(58px, 8vw, 104px) clamp(20px, 5vw, 72px);
   border-top: 1px solid rgba(0, 0, 0, 0.08);

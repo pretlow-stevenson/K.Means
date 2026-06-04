@@ -261,15 +261,15 @@ sup {
 }
 
 .suite-item-with-preview {
-  grid-template-columns: minmax(0, 1fr) minmax(330px, 350px);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 390px);
 }
 
 .suite-actions-with-preview {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px 24px;
+  gap: 14px 18px;
   align-content: flex-start;
-  width: min(100%, 350px);
+  width: min(100%, 390px);
 }
 
 .suite-actions-with-preview .section-link {
