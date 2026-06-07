@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="/assets/images/kmeans-mark.png" />
   <meta
     name="description"
-    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for durable multi-model reasoning operations, runtime signaling, trace metadata, and multimodal frontier-model inputs."
+    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for durable multi-model reasoning operations, bounded wait responses, runtime signaling, trace metadata, and multimodal frontier-model inputs."
   />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
@@ -63,8 +63,8 @@
         </p>
         <p>
           A caller submits an operation through a scoped API, Parallax dispatches it through the configured persona and
-          model set, runs the selected consensus mode, records traceable metadata, and returns a synthesized or confirmed
-          result without exposing the underlying queue, database, or storage substrate to the client.
+          model set, runs the selected consensus mode, records traceable metadata, and returns either a final result or a
+          receipt for progress tracking without exposing the underlying queue, database, or storage substrate to the client.
         </p>
       </div>
     </section>
@@ -144,6 +144,17 @@
             <p>
               Clients submit operations, receive dispatch receipts, and poll status and results through scoped API calls.
               Direct access to queue, database, and storage resources is not required for ordinary client workflows.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>WAIT</span>
+          <div>
+            <h3>Durable orchestration with bounded wait</h3>
+            <p>
+              Longer-running consensus workflows return a receipt for progress tracking. Shorter-running work can request
+              a bounded wait window: if the operation completes in time, Parallax returns the final response directly;
+              otherwise it falls back to the same receipt and status flow.
             </p>
           </div>
         </article>
