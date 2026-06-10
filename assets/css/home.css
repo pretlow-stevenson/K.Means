@@ -445,6 +445,8 @@ sup {
 
 .footer-copyright {
   grid-column: 1 / -1;
+  justify-self: stretch;
+  max-width: none;
   color: rgba(0, 0, 0, 0.48);
   font-size: 12px;
   text-align: center;
