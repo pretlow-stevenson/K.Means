@@ -443,9 +443,10 @@ sup {
   color: #000;
 }
 
-.footer-copyright {
+.site-footer .footer-copyright {
   grid-column: 1 / -1;
   justify-self: stretch;
+  width: 100%;
   max-width: none;
   color: rgba(0, 0, 0, 0.48);
   font-size: 12px;
