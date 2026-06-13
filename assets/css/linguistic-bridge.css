@@ -191,6 +191,22 @@ sup {
   transform: skewY(-12deg);
 }
 
+.hero-art-brain {
+  width: clamp(230px, 25vw, 340px);
+  min-height: clamp(300px, 34vw, 430px);
+  margin-top: clamp(18px, 3vw, 42px);
+}
+
+.hero-art-brain img {
+  width: clamp(210px, 22vw, 310px);
+  opacity: 0.88;
+}
+
+.hero-art-brain::before,
+.hero-art-brain::after {
+  display: none;
+}
+
 .hero-art-approach::before {
   width: clamp(170px, 17vw, 240px);
   height: clamp(170px, 17vw, 240px);
