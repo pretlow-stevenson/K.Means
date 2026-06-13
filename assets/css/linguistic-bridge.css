@@ -252,6 +252,22 @@ sup {
   transform: translate(-50%, -50%) skewX(-18deg);
 }
 
+.hero-art-sketch {
+  width: clamp(250px, 28vw, 380px);
+  min-height: clamp(220px, 24vw, 330px);
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+.hero-art-sketch img {
+  width: clamp(235px, 26vw, 360px);
+  opacity: 0.86;
+}
+
+.hero-art-sketch::before,
+.hero-art-sketch::after {
+  display: none;
+}
+
 .hero-art-parallax img {
   opacity: 0.94;
 }
