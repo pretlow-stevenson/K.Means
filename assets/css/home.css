@@ -496,6 +496,25 @@ sup {
   }
 }
 
+@media (orientation: landscape) and (max-height: 560px) and (hover: none) and (pointer: coarse) {
+  .product-layout,
+  .suite-item-with-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .product-copy {
+    max-width: none;
+  }
+
+  .suite-actions-with-preview {
+    width: min(100%, 350px);
+  }
+
+  .suite-preview {
+    width: min(100%, 300px);
+  }
+}
+
 @media (max-width: 560px) {
   .site-header {
     position: static;
