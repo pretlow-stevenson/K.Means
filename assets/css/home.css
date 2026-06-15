@@ -395,6 +395,10 @@ sup {
   max-width: 720px;
 }
 
+.approach-list .section-link {
+  margin-top: 0;
+}
+
 .bridge-band {
   background:
     radial-gradient(circle at 78% 0%, rgba(93, 169, 239, 0.12), transparent 28rem),
