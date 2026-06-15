@@ -312,6 +312,29 @@ sup {
     linear-gradient(90deg, transparent 12%, rgba(0, 0, 0, 0.18) 12.2% 12.7%, transparent 12.9%);
 }
 
+.page-hero-sketch-layout {
+  grid-template-columns: minmax(0, 720px) minmax(300px, 520px);
+  gap: clamp(28px, 4vw, 64px);
+}
+
+.page-hero-sketch {
+  width: clamp(300px, 34vw, 520px);
+  min-height: clamp(230px, 24vw, 330px);
+  margin-top: clamp(18px, 4vw, 54px);
+}
+
+.page-hero-sketch::before,
+.page-hero-sketch::after {
+  display: none;
+}
+
+.page-hero-sketch img {
+  width: 100%;
+  max-width: 520px;
+  opacity: 0.9;
+  filter: contrast(1.05);
+}
+
 .section {
   padding: clamp(58px, 8vw, 104px) clamp(20px, 5vw, 72px);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
