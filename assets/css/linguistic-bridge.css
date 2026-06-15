@@ -170,10 +170,16 @@ sup {
   transform: translate(-50%, -50%);
 }
 
+/*
+  Hero treatments are intentionally semantic rather than decorative:
+  research = evidence graph, approach = convergence map, Linguistic Bridge = translation span,
+  Parallax = signal field, Maestro = console plane.
+*/
 .hero-art-research::before {
   inset: 4% -18%;
   z-index: 0;
-  opacity: 0.56;
+  opacity: 0.6;
+  transform: none;
   background:
     radial-gradient(circle at 14% 34%, rgba(0, 0, 0, 0.5) 0 2px, transparent 2.7px),
     radial-gradient(circle at 32% 66%, rgba(0, 0, 0, 0.34) 0 2px, transparent 2.7px),
@@ -188,7 +194,7 @@ sup {
   width: clamp(190px, 20vw, 280px);
   height: clamp(130px, 14vw, 190px);
   z-index: 1;
-  opacity: 0.52;
+  opacity: 0.56;
   border-top: 1px solid rgba(0, 0, 0, 0.16);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   background:
@@ -202,9 +208,9 @@ sup {
   width: clamp(190px, 20vw, 280px);
   height: clamp(170px, 18vw, 240px);
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.56;
   background:
-    linear-gradient(18deg, transparent 22%, rgba(0, 0, 0, 0.2) 22.2% 22.8%, transparent 23%),
+    linear-gradient(18deg, transparent 22%, rgba(0, 0, 0, 0.22) 22.2% 22.8%, transparent 23%),
     linear-gradient(0deg, transparent 49%, rgba(0, 0, 0, 0.28) 49.2% 49.8%, transparent 50%),
     linear-gradient(342deg, transparent 22%, rgba(0, 0, 0, 0.18) 22.2% 22.8%, transparent 23%);
   background-position: 0 36%, 0 50%, 0 64%;
@@ -216,7 +222,7 @@ sup {
   width: clamp(190px, 20vw, 280px);
   height: clamp(170px, 18vw, 240px);
   z-index: 1;
-  opacity: 0.58;
+  opacity: 0.62;
   background:
     radial-gradient(circle at 16% 35%, rgba(0, 0, 0, 0.62) 0 2.5px, transparent 3px),
     radial-gradient(circle at 16% 65%, rgba(0, 0, 0, 0.46) 0 2.5px, transparent 3px),
@@ -227,7 +233,8 @@ sup {
 .hero-art-bridge::before {
   inset: 8% -16%;
   z-index: 0;
-  opacity: 0.48;
+  opacity: 0.54;
+  transform: none;
   background:
     linear-gradient(31deg, transparent 35%, rgba(0, 0, 0, 0.24) 35.2% 35.8%, transparent 36%),
     linear-gradient(149deg, transparent 35%, rgba(0, 0, 0, 0.22) 35.2% 35.8%, transparent 36%),
@@ -240,7 +247,7 @@ sup {
   width: clamp(196px, 21vw, 292px);
   height: clamp(124px, 13vw, 182px);
   z-index: 1;
-  opacity: 0.56;
+  opacity: 0.6;
   border-left: 1px solid rgba(0, 0, 0, 0.22);
   border-right: 1px solid rgba(0, 0, 0, 0.18);
   background:
@@ -258,7 +265,7 @@ sup {
   height: clamp(198px, 21vw, 292px);
   z-index: 0;
   border-radius: 999px;
-  opacity: 0.48;
+  opacity: 0.52;
   background:
     radial-gradient(circle, rgba(0, 0, 0, 0.08), transparent 58%),
     radial-gradient(circle, transparent 44%, rgba(0, 0, 0, 0.16) 44.4% 44.9%, transparent 45.3%),
@@ -284,7 +291,7 @@ sup {
   width: clamp(198px, 21vw, 292px);
   height: clamp(190px, 20vw, 280px);
   z-index: 0;
-  opacity: 0.44;
+  opacity: 0.48;
   background:
     radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.08), transparent 62%),
     linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.22) 24.4% 24.9%, transparent 25.3%),
@@ -298,7 +305,7 @@ sup {
   width: clamp(176px, 18vw, 250px);
   height: clamp(126px, 13vw, 188px);
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.46;
   background:
     linear-gradient(26deg, transparent 38%, rgba(0, 0, 0, 0.24) 38.2% 38.8%, transparent 39%),
     linear-gradient(154deg, transparent 38%, rgba(0, 0, 0, 0.18) 38.2% 38.8%, transparent 39%),

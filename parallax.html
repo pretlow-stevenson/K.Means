@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="/assets/images/kmeans-mark.png" />
   <meta
     name="description"
-    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for durable multi-model reasoning operations, bounded wait responses, runtime signaling, trace metadata, and multimodal frontier-model inputs."
+    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for Sequential Bridge shared-context reasoning, durable operations, bounded wait responses, runtime signaling, trace metadata, and multimodal frontier-model inputs."
   />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
@@ -55,9 +55,10 @@
         <p class="eyebrow">Symphony Parallax<sup>™</sup></p>
         <h1 id="parallax-title">Cloud-scale consensus for multi-model reasoning.</h1>
         <p>
-          Symphony Parallax™ turns Linguistic Bridge™ into durable cloud infrastructure. It runs multi-model consensus
-          operations, tracks the shape of agreement and uncertainty, and returns integrated answers with the metadata
-          teams need to inspect what happened after the answer is produced.
+          Symphony Parallax™ turns Linguistic Bridge™ into durable cloud infrastructure. In Sequential Bridge mode, models
+          reason through an evolving shared context rather than answering as isolated parallel calls. Parallax tracks the
+          shape of agreement, uncertainty, and completion, then returns integrated answers with the metadata teams need to
+          inspect what happened after the answer is produced.
         </p>
       </div>
       <div class="page-hero-art hero-art-parallax" aria-hidden="true">
@@ -78,7 +79,8 @@
         <p>
           A caller submits an operation through a scoped API, Parallax dispatches it through the configured persona and
           model set, runs the selected consensus mode, records traceable metadata, and returns either a final result or a
-          receipt for progress tracking without exposing the underlying queue, database, or storage substrate to the client.
+          receipt for progress tracking. When Sequential Bridge is selected, each round carries forward shared context so
+          later models can respond to, challenge, and repair the reasoning already produced.
         </p>
       </div>
     </section>
@@ -88,8 +90,9 @@
         <p class="eyebrow">Execution Modes</p>
         <h2 id="modes-title">Two operating families for different consensus needs.</h2>
         <p class="section-intro">
-          When supported by the selected frontier models, each mode can carry text, image, and file-backed inputs through
-          the same operation path.
+          Sequential Bridge is the primary full-protocol mode for deliberative work. One-shot modes remain useful for
+          speed and validation, but they are explicitly parallel rather than conversational. When supported by the
+          selected frontier models, each mode can carry text, image, and file-backed inputs through the same operation path.
         </p>
       </div>
       <div class="capability-list">
@@ -99,7 +102,8 @@
             <h3>Sequential Bridge</h3>
             <p>
               The full Linguistic Bridge™ path. Reasoners are called sequentially inside each round so later models
-              receive the evolving shared context before contributing. Use this when deliberative continuity matters.
+              receive the evolving shared context before contributing, critiquing, or repairing the emerging result. Use
+              this when deliberative continuity matters.
             </p>
           </div>
         </article>
@@ -109,7 +113,8 @@
             <h3>One-Shot Synthesis</h3>
             <p>
               A faster parallel composition path. Parallax sends the same prompt to all active reasoners at once, then
-              asks an integrator to synthesize the independent responses into one complete answer.
+              asks an integrator to synthesize the independent responses into one complete answer. It is useful when breadth
+              matters more than conversational continuity.
             </p>
           </div>
         </article>
@@ -119,7 +124,8 @@
             <h3>One-Shot Confirmation</h3>
             <p>
               A fast validation path. Parallax compares independent reasoner responses against a configured consensus
-              threshold and stops low-confidence or insufficient-consensus outputs instead of presenting them as confirmed.
+              threshold and stops low-confidence or insufficient-consensus outputs instead of presenting parallel agreement
+              as confirmed consensus.
             </p>
           </div>
         </article>
@@ -138,9 +144,9 @@
           operation.
         </p>
         <p>
-          In Sequential Bridge, signals can help skip completed participants, end reasoning early when alignment is strong,
-          or stop when uncertainty makes a result unsafe. In one-shot modes, signals remain useful metadata while the
-          integrator performs final synthesis or confirmation.
+          In Sequential Bridge, signals help govern an active shared-context exchange: completed participants can be
+          skipped, strong alignment can end the run early, and unsafe uncertainty can stop the operation. In one-shot modes,
+          signals still provide useful metadata while the integrator performs final synthesis or confirmation.
         </p>
       </div>
     </section>
