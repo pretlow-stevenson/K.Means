@@ -426,6 +426,18 @@ sup {
   gap: 16px;
 }
 
+.demo-link-disabled {
+  color: rgba(0, 0, 0, 0.34);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  cursor: default;
+}
+
+.demo-link-disabled:hover,
+.demo-link-disabled:focus-visible {
+  color: rgba(0, 0, 0, 0.34);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
 .recording-models {
   display: flex;
   flex-wrap: wrap;
