@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="/assets/images/kmeans-mark.png" />
   <meta
     name="description"
-    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for Sequential Bridge shared-context reasoning, durable operations, bounded wait responses, runtime signaling, trace metadata, and multimodal frontier-model inputs."
+    content="Symphony Parallax™ is the K MEANS AI cloud-scale consensus engine for Sequential Bridge shared-context reasoning, virtual tenants, durable operations, bounded wait responses, runtime signaling, trace metadata, and multimodal frontier-model inputs."
   />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
@@ -79,8 +79,10 @@
         <p>
           A caller submits an operation through a scoped API, Parallax dispatches it through the configured persona and
           model set, runs the selected consensus mode, records traceable metadata, and returns either a final result or a
-          receipt for progress tracking. When Sequential Bridge is selected, each round carries forward shared context so
-          later models can respond to, challenge, and repair the reasoning already produced.
+          receipt for progress tracking. Before the run begins, virtual tenant boundaries can determine which personas,
+          workflows, attachment rules, file-type rules, and capture settings apply. When Sequential Bridge is selected, each
+          round carries forward shared context so later models can respond to, challenge, and repair the reasoning already
+          produced.
         </p>
       </div>
     </section>
@@ -151,10 +153,55 @@
       </div>
     </section>
 
+    <section class="section capability-section" aria-labelledby="tenants-title">
+      <div class="section-heading">
+        <p class="eyebrow">Virtual Tenants</p>
+        <h2 id="tenants-title">Governed compartments inside one deployment.</h2>
+        <p class="section-intro">
+          Virtual tenants provide a customer-internal isolation model for Parallax deployments. Organizations can
+          compartmentalize activity across teams, programs, environments, business units, or sensitive operational domains
+          without standing up separate infrastructure for each group. A virtual tenant is a governed boundary inside a
+          customer-controlled deployment, not a separate customer account.
+        </p>
+      </div>
+      <div class="capability-list">
+        <article class="capability-item">
+          <span>POLICY</span>
+          <div>
+            <h3>Compartmentalized orchestration</h3>
+            <p>
+              Administrators can separate experimental, regulated, internal, high-trust, or mission-specific workflows
+              while keeping Parallax centrally managed as a shared orchestration layer.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>ACCESS</span>
+          <div>
+            <h3>Persona, workflow, and attachment control</h3>
+            <p>
+              Each virtual tenant can shape which personas are available, which model-backed workflows can run, whether
+              attachments are allowed, which file types are permitted, and how prompt or response capture policies apply.
+            </p>
+          </div>
+        </article>
+        <article class="capability-item">
+          <span>AUDIT</span>
+          <div>
+            <h3>Graceful disablement with audit history</h3>
+            <p>
+              When a virtual tenant is disabled, Parallax can deny new work for that boundary while preserving historical
+              auditability for authorized administrators.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section capability-section" aria-labelledby="trust-title">
       <div class="section-heading">
         <p class="eyebrow">Operational Trust</p>
-        <h2 id="trust-title">Receipts, fingerprints, traces, and scoped access.</h2>
+        <h2 id="trust-title">Receipts, fingerprints, traces, and governed access.</h2>
       </div>
       <div class="capability-list">
         <article class="capability-item">
@@ -202,9 +249,9 @@
         <article class="capability-item">
           <span>AUTH</span>
           <div>
-            <h3>Tenant-aware operation tracking</h3>
+            <h3>Scoped operation tracking</h3>
             <p>
-              Operation access is tenant-aware and owner-scoped by default, with trace access separated from ordinary
+              Operation access is scoped by virtual tenant and owner by default, with trace access separated from ordinary
               result access so review workflows can be governed independently.
             </p>
           </div>
