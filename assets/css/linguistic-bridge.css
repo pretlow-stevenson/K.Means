@@ -411,6 +411,21 @@ sup {
   overflow-wrap: anywhere;
 }
 
+.maestro-workspace-section .section-heading {
+  margin-bottom: clamp(22px, 4vw, 34px);
+}
+
+.maestro-workspace-preview {
+  display: block;
+  width: min(100%, 960px);
+}
+
+.maestro-workspace-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .recording-list {
   max-width: 1040px;
 }
