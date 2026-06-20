@@ -77,12 +77,11 @@
           Symphony Parallax™ is the cloud execution layer for the same consensus architecture.
         </p>
         <p>
-          A caller submits an operation through a scoped API, Parallax dispatches it through the configured persona and
-          model set, runs the selected consensus mode, records traceable metadata, and returns either a final result or a
-          receipt for progress tracking. Before the run begins, virtual tenant boundaries can determine which personas,
-          workflows, attachment rules, file-type rules, and capture settings apply. When Sequential Bridge is selected, each
-          round carries forward shared context so later models can respond to, challenge, and repair the reasoning already
-          produced.
+          A caller submits work through a governed interface, Parallax applies the appropriate policy, runs the selected
+          consensus path, and returns either a final result or a receipt for progress tracking. Before the run begins,
+          virtual tenant boundaries shape which teams, workflows, inputs, and capture settings are available. When Sequential
+          Bridge is selected, each round carries forward shared context so later models can respond to, challenge, and repair
+          the reasoning already produced.
         </p>
       </div>
     </section>
@@ -146,9 +145,9 @@
           operation.
         </p>
         <p>
-          In Sequential Bridge, signals help govern an active shared-context exchange: completed participants can be
-          skipped, strong alignment can end the run early, and unsafe uncertainty can stop the operation. In one-shot modes,
-          signals still provide useful metadata while the integrator performs final synthesis or confirmation.
+          In Sequential Bridge, signals help guide progression, completion, and safe stopping behavior across an active
+          shared-context exchange. In one-shot modes, they still provide useful context while the integrator performs final
+          synthesis or confirmation.
         </p>
       </div>
     </section>
@@ -209,8 +208,8 @@
           <div>
             <h3>Hardened API boundary</h3>
             <p>
-              Clients submit operations, receive dispatch receipts, and poll status and results through scoped API calls.
-              Direct access to queue, database, and storage resources is not required for ordinary client workflows.
+              Clients submit operations, receive dispatch receipts, and retrieve status and results through scoped API calls.
+              Ordinary workflows do not require direct access to the underlying infrastructure.
             </p>
           </div>
         </article>
@@ -230,8 +229,8 @@
           <div>
             <h3>Proof-of-processing metadata</h3>
             <p>
-              Prompt hashes, canonical request hashes, attachment metadata hashes, and receipt correlation let teams
-              confirm what was processed without making raw prompt disclosure the default operational artifact.
+              Non-sensitive processing fingerprints and receipt correlation let teams confirm what was handled without
+              making raw prompt disclosure the default operational artifact.
             </p>
           </div>
         </article>
@@ -240,9 +239,8 @@
           <div>
             <h3>Conservative trace posture</h3>
             <p>
-              Parallax defaults to metadata-oriented traces: participant, model, role, timing, signal, confidence,
-              response hash, response length, and trace availability. Customer-approved diagnostics can opt into
-              restricted full-text capture policies when needed.
+              Parallax defaults to metadata-oriented traces such as participant, timing, signal, confidence, and
+              availability data. Customer-approved diagnostics can opt into restricted full-text capture policies when needed.
             </p>
           </div>
         </article>
@@ -251,7 +249,7 @@
           <div>
             <h3>Scoped operation tracking</h3>
             <p>
-              Operation access is scoped by virtual tenant and owner by default, with trace access separated from ordinary
+              Operation access can be scoped by governed boundary and owner, with trace review separated from ordinary
               result access so review workflows can be governed independently.
             </p>
           </div>
