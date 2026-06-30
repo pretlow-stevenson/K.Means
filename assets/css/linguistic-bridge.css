@@ -426,6 +426,21 @@ sup {
   height: auto;
 }
 
+.parallax-intelligence-section .section-heading {
+  margin-bottom: clamp(22px, 4vw, 34px);
+}
+
+.parallax-intelligence-preview {
+  display: block;
+  width: min(100%, 1080px);
+}
+
+.parallax-intelligence-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .recording-list {
   max-width: 1040px;
 }
