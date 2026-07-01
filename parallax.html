@@ -110,9 +110,10 @@
       <div class="parallax-throughput-proof" aria-label="Parallax measured throughput baseline">
         <span>Measured Throughput Baseline</span>
         <p>
-          In Azure Functions testing before full scale-out tuning, Parallax™ completed 300 one-shot consensus operations,
-          fanning out to 900 downstream chat completions in 29.0 seconds: about 31 completions per second. The run used
-          64 processor concurrency, 128 prefetch, and 128 concurrent operations.
+          In Azure Functions testing before full scale-out tuning, Parallax™ completed 300 successful one-shot consensus
+          operations end to end with no retries, including scheduling, fan-out, aggregation, and integration overhead. Each
+          operation used two reasoners and one integrator, producing 900 downstream chat completions in 29.0 seconds: about
+          31 completions per second, with provider capacity still available.
         </p>
       </div>
       <p class="parallax-pocket-line">
