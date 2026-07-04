@@ -317,6 +317,32 @@ sup {
     linear-gradient(90deg, transparent 12%, rgba(0, 0, 0, 0.18) 12.2% 12.7%, transparent 12.9%);
 }
 
+.page-hero-about {
+  grid-template-columns: minmax(0, 760px) minmax(260px, 420px);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: center;
+}
+
+.page-hero-about .page-hero-art {
+  justify-self: center;
+  width: clamp(260px, 30vw, 420px);
+  min-height: clamp(330px, 36vw, 520px);
+  margin-top: 0;
+}
+
+.hero-art-about::before,
+.hero-art-about::after {
+  display: none;
+}
+
+.hero-art-about img {
+  width: auto;
+  max-width: min(100%, 390px);
+  max-height: clamp(360px, 44vw, 560px);
+  opacity: 0.72;
+  filter: contrast(1.04);
+}
+
 .page-hero-sketch-layout {
   grid-template-columns: minmax(0, 720px) minmax(300px, 520px);
   gap: clamp(28px, 4vw, 64px);
