@@ -113,9 +113,30 @@
         <p>
           In Azure Functions testing before full scale-out tuning, Parallax™ completed 500 successful one-shot consensus
           operations end to end with no retries, including scheduling, fan-out, aggregation, and integration overhead. Each
-          operation used two reasoners and one integrator, producing 1500 downstream chat completions in 39.2 seconds:
-          about 38.3 completions per second and 12.8 consensus operations per second, with provider capacity still available.
+          operation used two reasoners and one integrator, with provider capacity still available.
         </p>
+        <dl class="parallax-throughput-stats" aria-label="Measured throughput results">
+          <div>
+            <dt>Operations</dt>
+            <dd>500</dd>
+          </div>
+          <div>
+            <dt>Chat Completions</dt>
+            <dd>1500</dd>
+          </div>
+          <div>
+            <dt>Elapsed Time</dt>
+            <dd>39.2s</dd>
+          </div>
+          <div>
+            <dt>Throughput</dt>
+            <dd>38.3/sec</dd>
+          </div>
+          <div>
+            <dt>Consensus Ops</dt>
+            <dd>12.8/sec</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -125,24 +146,15 @@
         <h2 id="cloud-title">The reasoning session becomes infrastructure.</h2>
       </div>
       <div class="text-stack">
-        <p>
-          Symphony Maestro™ is the local, human-directed console experience for conducting multi-model reasoning.
-          Symphony Parallax™ is the cloud execution layer for the same consensus architecture.
-        </p>
-        <p>
-          Teams submit work through a governed interface, Parallax™ applies the appropriate policy, runs the selected consensus
-          path, and returns either a final result or a receipt for progress tracking. Virtual tenant boundaries shape the
-          available teams, workflows, inputs, and capture controls before work begins. When Sequential Bridge is selected, each
-          round carries forward shared context so later models can respond to, challenge, and repair the reasoning already
-          produced.
-        </p>
+        <p>Work enters through a governed interface where Parallax™ applies the appropriate policy, executes the selected consensus path, and returns either a final result or a progress-tracking receipt. Virtual tenant boundaries define the available teams, workflows, inputs, and capture controls before execution begins.</p>
+        <p>When Sequential Bridge is selected, each round carries shared context forward, allowing later models to respond to, challenge, and repair the reasoning already produced.</p>
       </div>
     </section>
 
     <section class="section capability-section" aria-labelledby="modes-title">
       <div class="section-heading">
         <p class="eyebrow">Execution Modes</p>
-        <h2 id="modes-title">Two operating families for different consensus needs.</h2>
+        <h2 id="modes-title">Two operating families for distinct consensus needs.</h2>
         <p class="section-intro">
           Sequential Bridge is the primary full-protocol mode for deliberative work. One-shot modes remain useful for
           speed and validation, but they are explicitly parallel rather than conversational. When supported by the
@@ -188,7 +200,7 @@
     <section class="section split-section" aria-labelledby="signaling-title">
       <div>
         <p class="eyebrow">Runtime Signaling</p>
-        <h2 id="signaling-title">Model collaboration becomes operational state.</h2>
+        <h2 id="signaling-title">Model signals become operational state.</h2>
       </div>
       <div class="text-stack">
         <p>

@@ -362,7 +362,7 @@ sup {
   display: grid;
   grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1fr);
   gap: clamp(32px, 6vw, 88px);
-  align-items: start;
+  align-items: center;
 }
 
 .text-stack {
@@ -478,7 +478,7 @@ sup {
 }
 
 .parallax-throughput-proof {
-  max-width: 860px;
+  max-width: 960px;
   margin-top: clamp(28px, 5vw, 52px);
   padding-top: clamp(20px, 4vw, 34px);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -493,6 +493,35 @@ sup {
   letter-spacing: 0.18em;
   line-height: 1.25;
   text-transform: uppercase;
+}
+
+.parallax-throughput-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  margin: clamp(18px, 3vw, 26px) 0 0;
+}
+
+.parallax-throughput-stats div {
+  min-width: 0;
+}
+
+.parallax-throughput-stats dt {
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.46);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.parallax-throughput-stats dd {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.84);
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1;
 }
 
 .parallax-pocket-line {
@@ -676,6 +705,15 @@ sup {
   .recording-actions {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .parallax-throughput-stats {
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .parallax-throughput-stats div:last-child {
+    grid-column: 1 / -1;
   }
 
   .site-footer {

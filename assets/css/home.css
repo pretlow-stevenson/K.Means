@@ -381,7 +381,7 @@ sup {
   display: grid;
   grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1fr);
   gap: clamp(32px, 6vw, 88px);
-  align-items: start;
+  align-items: center;
 }
 
 .approach-list {
