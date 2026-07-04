@@ -484,7 +484,7 @@ sup {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.parallax-throughput-proof span {
+.parallax-throughput-label {
   display: block;
   margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.46);
@@ -492,6 +492,25 @@ sup {
   font-weight: 600;
   letter-spacing: 0.18em;
   line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.parallax-proof-badges {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 1.8vw, 16px);
+  margin-top: clamp(18px, 3vw, 26px);
+}
+
+.parallax-proof-badges span {
+  min-width: 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.16);
+  color: rgba(0, 0, 0, 0.62);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
   text-transform: uppercase;
 }
 
@@ -713,6 +732,7 @@ sup {
     flex-direction: column;
   }
 
+  .parallax-proof-badges,
   .parallax-throughput-stats {
     gap: 18px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -738,6 +758,11 @@ sup {
 
   .page-hero-art {
     display: none;
+  }
+
+  .parallax-proof-badges,
+  .parallax-throughput-stats {
+    grid-template-columns: 1fr;
   }
 }
 
