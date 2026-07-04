@@ -145,6 +145,22 @@ li {
   transform: translateY(0) scale(1);
 }
 
+.word-assemble-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(var(--word-shift, 14px));
+  transition:
+    opacity 0.58s ease,
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(120ms + (var(--word-order, 0) * 64ms));
+  will-change: opacity, transform;
+}
+
+.word-assemble.is-assembled .word-assemble-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .capability-item,
 .recording-item,
 .contact-item,
@@ -407,12 +423,18 @@ li {
   .nav-menu {
     min-width: min(220px, calc(100vw - 40px));
   }
+
+  .site-nav .nav-dropdown:last-child .nav-menu {
+    right: 0;
+    left: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .motion-reveal,
   .motion-visual,
-  .motion-stagger-item {
+  .motion-stagger-item,
+  .word-assemble-word {
     opacity: 1;
     transform: none;
     transition: none;

@@ -8,6 +8,45 @@
     '.capability-list, .suite-list, .recording-list, .contact-list, .parallax-surface-list'
   ));
 
+  const setupHomeHeroHeadline = () => {
+    const title = document.querySelector('.hero #hero-title');
+
+    if (!title || title.dataset.wordAssemble === 'ready') {
+      return null;
+    }
+
+    const text = title.textContent.trim().replace(/\s+/g, ' ');
+    const words = text.split(' ');
+
+    if (words.length < 2) {
+      return null;
+    }
+
+    title.dataset.wordAssemble = 'ready';
+    title.setAttribute('aria-label', text);
+    title.classList.add('word-assemble');
+    title.textContent = '';
+
+    words.forEach((word, index) => {
+      const wordElement = document.createElement('span');
+      wordElement.className = 'word-assemble-word';
+      wordElement.setAttribute('aria-hidden', 'true');
+      wordElement.style.setProperty('--word-order', index);
+      wordElement.style.setProperty('--word-shift', index % 2 === 0 ? '-18px' : '18px');
+      wordElement.textContent = word;
+      title.appendChild(wordElement);
+
+      if (index < words.length - 1) {
+        title.appendChild(document.createTextNode(' '));
+      }
+    });
+
+    return {
+      element: title,
+      assemble: () => title.classList.add('is-assembled')
+    };
+  };
+
   const revealImmediately = (elements) => {
     elements.forEach((element) => {
       element.classList.add('is-visible');
@@ -33,6 +72,21 @@
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
     revealImmediately([...revealTargets, ...visualTargets, ...staggerItems]);
     return;
+  }
+
+  const homeHeroHeadline = setupHomeHeroHeadline();
+
+  if (homeHeroHeadline) {
+    const headlineObserver = new IntersectionObserver((entries, observer) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        requestAnimationFrame(homeHeroHeadline.assemble);
+        observer.unobserve(homeHeroHeadline.element);
+      }
+    }, {
+      threshold: 0.6
+    });
+
+    headlineObserver.observe(homeHeroHeadline.element);
   }
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
