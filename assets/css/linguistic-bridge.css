@@ -521,6 +521,7 @@ sup {
   color: rgba(0, 0, 0, 0.84);
   font-family: "Bodoni Moda", Georgia, serif;
   font-size: clamp(28px, 4vw, 42px);
+  font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
