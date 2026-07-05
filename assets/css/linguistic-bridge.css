@@ -414,6 +414,41 @@ sup {
   max-width: 980px;
 }
 
+.parallax-trust-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 86px);
+  align-items: center;
+  max-width: 1180px;
+}
+
+.parallax-fingerprint-visual {
+  position: relative;
+  align-self: center;
+  width: clamp(220px, 28vw, 360px);
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.parallax-fingerprint-visual::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.1), transparent 66%);
+  opacity: 0.72;
+}
+
+.parallax-fingerprint-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.38;
+  filter: grayscale(1) contrast(1.12);
+  mix-blend-mode: multiply;
+}
+
 .capability-item,
 .recording-item {
   display: grid;
@@ -742,6 +777,7 @@ sup {
   }
 
   .split-section,
+  .parallax-trust-layout,
   .page-hero-with-art,
   .parallax-surface-list,
   .capability-item,
@@ -755,6 +791,15 @@ sup {
     min-height: auto;
     margin-top: 0;
     padding-top: 6px;
+  }
+
+  .parallax-fingerprint-visual {
+    width: min(100%, 330px);
+  }
+
+  .parallax-fingerprint-visual img {
+    max-height: 360px;
+    object-fit: contain;
   }
 
   .recording-actions {
@@ -788,6 +833,15 @@ sup {
 
   .page-hero-art {
     display: none;
+  }
+
+  .parallax-fingerprint-visual {
+    width: min(100%, 260px);
+  }
+
+  .parallax-fingerprint-visual img {
+    max-height: 280px;
+    object-fit: contain;
   }
 
   .parallax-proof-badges,

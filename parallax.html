@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css?v=motion" />
-  <link rel="stylesheet" href="assets/css/linguistic-bridge.css?v=section-scale" />
+  <link rel="stylesheet" href="assets/css/linguistic-bridge.css?v=fingerprint-proof" />
   <script defer src="assets/js/site-motion.js"></script>
 </head>
 
@@ -273,59 +273,68 @@
         <p class="eyebrow">Operational Trust</p>
         <h2 id="trust-title">Receipts, fingerprints, traces, and governed access.</h2>
       </div>
-      <div class="capability-list">
-        <article class="capability-item">
-          <span>API</span>
-          <div>
-            <h3>Governed access boundary</h3>
-            <p>
-              Clients submit operations, receive processing receipts, and retrieve status and results through scoped interfaces.
-              Ordinary workflows do not require direct access to the underlying infrastructure.
-            </p>
-          </div>
-        </article>
-        <article class="capability-item">
-          <span>WAIT</span>
-          <div>
-            <h3>Durable orchestration with bounded wait</h3>
-            <p>
-              Longer-running consensus workflows return a receipt for progress tracking. Shorter-running work can request
-              a bounded wait window: if the operation completes in time, Parallax™ returns the final response directly;
-              otherwise it falls back to the same receipt and status flow.
-            </p>
-          </div>
-        </article>
-        <article class="capability-item">
-          <span>HASH</span>
-          <div>
-            <h3>Proof-of-processing metadata</h3>
-            <p>
-              Non-sensitive processing fingerprints and receipt records let teams confirm what was handled without making
-              prompt disclosure the default operational artifact.
-            </p>
-          </div>
-        </article>
-        <article class="capability-item">
-          <span>TRACE</span>
-          <div>
-            <h3>Metadata-first trace posture</h3>
-            <p>
-              Parallax™ defaults to metadata-oriented traces such as participant, timing, signal, confidence, and
-              availability data. Customer-approved diagnostics can enable higher-detail capture under restricted policy when
-              deeper review is needed.
-            </p>
-          </div>
-        </article>
-        <article class="capability-item">
-          <span>AUTH</span>
-          <div>
-            <h3>Scoped operation tracking</h3>
-            <p>
-              Access can be limited by governed boundary and ownership, with trace review separated from ordinary result
-              access so review workflows can be governed independently.
-            </p>
-          </div>
-        </article>
+      <div class="parallax-trust-layout">
+        <figure class="parallax-fingerprint-visual">
+          <img
+            src="assets/images/parallax-fingerprint.png"
+            alt="Fingerprint sketch representing proof-of-processing metadata and receipt verification"
+            loading="lazy"
+          />
+        </figure>
+        <div class="capability-list">
+          <article class="capability-item">
+            <span>API</span>
+            <div>
+              <h3>Governed access boundary</h3>
+              <p>
+                Clients submit operations, receive processing receipts, and retrieve status and results through scoped interfaces.
+                Ordinary workflows do not require direct access to the underlying infrastructure.
+              </p>
+            </div>
+          </article>
+          <article class="capability-item">
+            <span>WAIT</span>
+            <div>
+              <h3>Durable orchestration with bounded wait</h3>
+              <p>
+                Longer-running consensus workflows return a receipt for progress tracking. Shorter-running work can request
+                a bounded wait window: if the operation completes in time, Parallax™ returns the final response directly;
+                otherwise it falls back to the same receipt and status flow.
+              </p>
+            </div>
+          </article>
+          <article class="capability-item">
+            <span>HASH</span>
+            <div>
+              <h3>Proof-of-processing metadata</h3>
+              <p>
+                Non-sensitive processing fingerprints and receipt records let teams confirm what was handled without making
+                prompt disclosure the default operational artifact.
+              </p>
+            </div>
+          </article>
+          <article class="capability-item">
+            <span>TRACE</span>
+            <div>
+              <h3>Metadata-first trace posture</h3>
+              <p>
+                Parallax™ defaults to metadata-oriented traces such as participant, timing, signal, confidence, and
+                availability data. Customer-approved diagnostics can enable higher-detail capture under restricted policy when
+                deeper review is needed.
+              </p>
+            </div>
+          </article>
+          <article class="capability-item">
+            <span>AUTH</span>
+            <div>
+              <h3>Scoped operation tracking</h3>
+              <p>
+                Access can be limited by governed boundary and ownership, with trace review separated from ordinary result
+                access so review workflows can be governed independently.
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
