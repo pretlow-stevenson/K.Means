@@ -202,12 +202,12 @@
         shadowElement.style.transform = `scaleX(${scale.toFixed(3)})`;
       };
 
-      const launchBall = (settledAngle) => {
+      const launchBall = (settledAngle, settledY) => {
         const launchDuration = 940;
         const launchAnimation = stage.animate([
-          { ...move(restX, restY, 1, 1), offset: 0 },
-          { ...move(restX + (ballSize * 0.58), restY - (ballSize * 0.42), 1.08, 1, 'cubic-bezier(0.14, 0.68, 0.2, 1)'), offset: 0.22 },
-          { ...move(mix(restX, finalX, 0.6), mix(restY, finalY, 0.52), 2.45, 0.88, 'cubic-bezier(0.18, 0.8, 0.18, 1)'), offset: 0.68 },
+          { ...move(restX, settledY, 1, 1), offset: 0 },
+          { ...move(restX + (ballSize * 0.58), settledY - (ballSize * 0.42), 1.08, 1, 'cubic-bezier(0.14, 0.68, 0.2, 1)'), offset: 0.22 },
+          { ...move(mix(restX, finalX, 0.6), mix(settledY, finalY, 0.52), 2.45, 0.88, 'cubic-bezier(0.18, 0.8, 0.18, 1)'), offset: 0.68 },
           { ...move(finalX, finalY, 7.1, 0), offset: 1 }
         ], {
           duration: launchDuration,
@@ -245,14 +245,14 @@
           .catch(() => layer.remove());
       };
 
-      const beginKick = (settledAngle) => {
+      const beginKick = (settledAngle, settledY) => {
         window.setTimeout(() => {
           heroLogo.classList.add('is-soccer-kicking');
         }, 120);
 
         window.setTimeout(() => {
           ring.classList.add('is-visible');
-          launchBall(settledAngle);
+          launchBall(settledAngle, settledY);
         }, 520);
 
         window.setTimeout(() => {
@@ -270,11 +270,12 @@
 
         const rollDistance = Math.max(0, restX - currentX);
         const finalAngle = currentAngle + (rollDistance / Math.max(radius, 1));
+        const groundedRestY = Math.max(currentY, restY);
         const settleDuration = clamp(560 + (rollDistance * 4.2), 620, 940);
         const rollAnimation = stage.animate([
           { ...move(currentX, currentY, 1, 1), offset: 0 },
-          { ...move(mix(currentX, restX, 0.72), restY, 1, 1, 'cubic-bezier(0.16, 0.72, 0.22, 1)'), offset: 0.72 },
-          { ...move(restX, restY, 1, 1), offset: 1 }
+          { ...move(mix(currentX, restX, 0.72), groundedRestY, 1, 1, 'cubic-bezier(0.16, 0.72, 0.22, 1)'), offset: 0.72 },
+          { ...move(restX, groundedRestY, 1, 1), offset: 1 }
         ], {
           duration: settleDuration,
           easing: 'cubic-bezier(0.18, 0.78, 0.22, 1)',
@@ -305,13 +306,13 @@
 
         rollAnimation.finished
           .then(() => {
-            stage.style.transform = `translate3d(${restX}px, ${restY}px, 0) scale(1)`;
+            stage.style.transform = `translate3d(${restX}px, ${groundedRestY}px, 0) scale(1)`;
 
             if (textureElement) {
               textureElement.style.transform = `rotate(${finalAngle}rad)`;
             }
 
-            beginKick(finalAngle);
+            beginKick(finalAngle, groundedRestY);
           })
           .catch(() => layer.remove());
       };
