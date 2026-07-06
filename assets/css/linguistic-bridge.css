@@ -744,7 +744,7 @@ sup {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 12px;
 }
 
 .footer-links a {
@@ -753,9 +753,36 @@ sup {
   text-decoration: none;
 }
 
+.footer-image-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.62;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-image-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 57%;
+  filter: grayscale(1) contrast(1.12) brightness(1.14);
+  mix-blend-mode: multiply;
+}
+
 .footer-links a:hover,
 .footer-links a:focus-visible {
   color: #000;
+}
+
+.footer-image-link:hover,
+.footer-image-link:focus-visible {
+  opacity: 0.86;
+  transform: translateY(-1px);
 }
 
 .footer-copyright {
