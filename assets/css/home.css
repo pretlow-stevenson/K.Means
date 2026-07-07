@@ -710,10 +710,29 @@ sup {
 @media (max-width: 560px) {
   .site-header {
     position: static;
+    gap: 8px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .site-nav {
+    gap: 4px 14px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .site-nav a {
     font-size: 10px;
+  }
+
+  h1 {
+    font-size: clamp(42px, 12vw, 48px);
+    line-height: 1.04;
+  }
+
+  .hero-summary {
+    font-size: 16px;
+    line-height: 1.62;
   }
 
   .hero {
@@ -735,6 +754,16 @@ sup {
 
   .suite-actions-with-preview {
     width: min(100%, 350px);
+    gap: 10px 16px;
+  }
+
+  .suite-actions-with-preview .section-link {
+    white-space: normal;
+  }
+
+  .suite-preview {
+    width: min(100%, 280px);
+    margin-top: 2px;
   }
 
   .capability-item {

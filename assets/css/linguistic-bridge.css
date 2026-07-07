@@ -852,14 +852,68 @@ sup {
 @media (max-width: 560px) {
   .site-header {
     position: static;
+    gap: 8px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .site-nav {
+    gap: 4px 14px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .site-nav a {
     font-size: 10px;
   }
 
+  h1,
+  .page-hero-with-art h1 {
+    max-width: 100%;
+    font-size: clamp(36px, 10.4vw, 42px);
+    line-height: 1.04;
+  }
+
+  .page-hero p:not(.eyebrow) {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  .page-hero-with-art {
+    gap: 22px;
+  }
+
   .page-hero-art {
-    display: none;
+    display: grid;
+    width: min(100%, 230px);
+    min-height: 0;
+    margin-top: 2px;
+    padding-top: 0;
+    opacity: 0.82;
+  }
+
+  .page-hero-art img {
+    width: clamp(108px, 34vw, 150px);
+  }
+
+  .page-hero-about .page-hero-art {
+    justify-self: start;
+    width: min(100%, 240px);
+    min-height: 0;
+  }
+
+  .hero-art-about img {
+    max-width: min(100%, 220px);
+    max-height: 260px;
+  }
+
+  .page-hero-sketch {
+    width: min(100%, 280px);
+  }
+
+  .page-hero-sketch img {
+    max-width: 280px;
   }
 
   .parallax-fingerprint-visual {
@@ -875,11 +929,20 @@ sup {
   .parallax-throughput-stats {
     grid-template-columns: 1fr;
   }
+
+  .parallax-throughput-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+  }
+
+  .parallax-throughput-stats div:last-child {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (hover: none) and (pointer: coarse) {
   .page-hero-art {
-    display: none;
+    opacity: 0.82;
   }
 }
 

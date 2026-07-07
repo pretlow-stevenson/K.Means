@@ -407,6 +407,19 @@ li {
 }
 
 @media (max-width: 560px) {
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+  }
+
+  .site-nav > a,
+  .site-nav .nav-dropdown-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+  }
+
   .nav-split {
     width: 100%;
   }
@@ -427,6 +440,16 @@ li {
   .site-nav .nav-dropdown:last-child .nav-menu {
     right: 0;
     left: auto;
+  }
+
+  .text-link {
+    min-height: 36px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .text-link::after {
+    bottom: 6px;
   }
 }
 
