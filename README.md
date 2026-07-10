@@ -1,0 +1,41 @@
+# K MEANS AI Website
+
+The public K MEANS AI site is a dependency-free static website published through GitHub Pages.
+
+## Structure
+
+- `index.html` is the home page.
+- The remaining top-level HTML files are product, research, approach, and company pages.
+- `assets/css/site.css` contains shared interaction, navigation, accessibility, and motion foundations.
+- `assets/css/home.css` contains home-page layout and the soccer easter egg presentation.
+- `assets/css/pages.css` contains the shared layout system for interior pages.
+- `assets/js/site-motion.js` contains progressive, reduced-motion-aware page animation behavior.
+- `assets/js/vendor/` contains the pinned Matter.js runtime and its license.
+
+## Local Preview
+
+From the repository root:
+
+```sh
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/`.
+
+## Validation
+
+Run the dependency-free structural audit before publishing:
+
+```sh
+node scripts/audit-site.mjs
+```
+
+The audit verifies local links and fragments, image references and intrinsic dimensions, heading and ARIA targets, canonical metadata, external-link safety, sitemap routes, and image file signatures.
+
+## Asset Guidelines
+
+- Keep public assets close to their maximum rendered size while allowing for high-density screens.
+- Use an extension that matches the asset's real file format.
+- Add intrinsic `width` and `height` to every rendered image.
+- Lazy-load images that are below the first viewport.
+- Keep exploratory or source artwork out of production unless it is referenced by the site.

@@ -47,6 +47,80 @@
     };
   };
 
+  const setupCountUpStats = () => {
+    const groups = Array.from(document.querySelectorAll('[data-count-up]'));
+
+    if (groups.length === 0) {
+      return;
+    }
+
+    const formatValue = (element, value) => {
+      const decimals = Number(element.dataset.countDecimals || 0);
+      const suffix = element.dataset.countSuffix || '';
+      const formatted = value.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: element.dataset.countGrouping !== 'false'
+      });
+
+      element.textContent = `${formatted}${suffix}`;
+    };
+
+    const showFinalValues = (group) => {
+      group.querySelectorAll('[data-count-to]').forEach((element) => {
+        formatValue(element, Number(element.dataset.countTo || 0));
+      });
+    };
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window) || !('requestAnimationFrame' in window)) {
+      groups.forEach(showFinalValues);
+      return;
+    }
+
+    const animateGroup = (group) => {
+      if (group.dataset.countUpComplete === 'true') {
+        return;
+      }
+
+      group.dataset.countUpComplete = 'true';
+      const values = Array.from(group.querySelectorAll('[data-count-to]'));
+
+      values.forEach((element) => formatValue(element, 0));
+
+      const duration = 1050;
+      const start = performance.now();
+
+      const tick = (timestamp) => {
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+        values.forEach((element) => {
+          const target = Number(element.dataset.countTo || 0);
+          formatValue(element, progress === 1 ? target : target * easedProgress);
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          showFinalValues(group);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          animateGroup(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    groups.forEach((group) => observer.observe(group));
+  };
+
   const setupHomeSoccerFlourish = () => {
     const hero = document.querySelector('main > .hero');
     const heroLogo = document.querySelector('.hero .hero-logo');
@@ -85,7 +159,7 @@
         <div class="world-cup-shadow"></div>
         <div class="world-cup-ball">
           <div class="world-cup-ball-texture">
-            <img src="assets/images/world-cup-soccer-ball.png?v=soccer-matter" alt="" />
+            <img src="assets/images/world-cup-soccer-ball.png?v=soccer-matter" width="524" height="524" alt="" decoding="async" />
           </div>
         </div>
       `;
@@ -396,6 +470,8 @@
       return item;
     });
   });
+
+  setupCountUpStats();
 
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
     revealImmediately([...revealTargets, ...visualTargets, ...staggerItems]);

@@ -5,6 +5,7 @@ html {
 body {
   min-height: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 78% 4%, rgba(93, 169, 239, 0.12), transparent 34rem),
     radial-gradient(circle at 12% 8%, rgba(216, 45, 155, 0.09), transparent 30rem),
@@ -29,6 +30,7 @@ a {
   padding: 18px clamp(20px, 5vw, 72px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   background: rgba(247, 247, 245, 0.86);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
 
@@ -145,6 +147,16 @@ sup {
 
 .page-hero-link {
   display: inline-flex;
+  margin-top: 24px;
+}
+
+.not-found-page {
+  display: grid;
+  align-content: center;
+  min-height: calc(100svh - 170px);
+}
+
+.not-found-page .section-actions {
   margin-top: 24px;
 }
 
@@ -535,8 +547,7 @@ sup {
 }
 
 .parallax-surface-list p,
-.parallax-throughput-proof p,
-.parallax-pocket-line {
+.parallax-throughput-proof p {
   color: rgba(0, 0, 0, 0.62);
   font-size: 15px;
   line-height: 1.75;
@@ -607,13 +618,6 @@ sup {
   font-size: clamp(28px, 4vw, 42px);
   font-variant-numeric: tabular-nums;
   line-height: 1;
-}
-
-.parallax-pocket-line {
-  max-width: 760px;
-  margin-top: clamp(28px, 4vw, 44px);
-  color: rgba(0, 0, 0, 0.72);
-  font-size: clamp(17px, 2vw, 21px);
 }
 
 .recording-list {
