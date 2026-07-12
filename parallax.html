@@ -19,7 +19,36 @@
   <meta property="og:title" content="Symphony Parallax™ | Cloud-Scale Consensus Engine | K MEANS AI" />
   <meta property="og:description" content="Cloud-scale consensus for governed N-model reasoning, frontier-model evaluation, shared-context deliberation, and traceable workflows." />
   <meta property="og:url" content="https://kmeans.ai/parallax.html" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta name="twitter:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kmeans.ai/#organization",
+          "name": "K MEANS AI",
+          "url": "https://kmeans.ai/"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kmeans.ai/parallax.html#software",
+          "name": "Symphony Parallax",
+          "url": "https://kmeans.ai/parallax.html",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Cloud",
+          "description": "An API-first cloud-scale consensus engine for governed N-model reasoning, frontier-model evaluation, shared-context deliberation, runtime signaling, and traceable workflows.",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -30,9 +59,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=site-polish" />
-  <link rel="stylesheet" href="assets/css/pages.css?v=site-polish" />
-  <script defer src="assets/js/site-motion.js?v=site-polish"></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=polish-2" />
+  <link rel="stylesheet" href="assets/css/pages.css?v=polish-2" />
+  <script defer src="assets/js/site-motion.js?v=polish-2"></script>
 </head>
 
 <body>
@@ -73,7 +102,10 @@
         </p>
       </div>
       <div class="page-hero-art page-hero-sketch hero-art-parallax" aria-hidden="true">
-        <img src="assets/images/parallax-signal-hero.png" width="1200" height="620" alt="" decoding="async" fetchpriority="high" />
+        <picture>
+          <source type="image/webp" srcset="assets/images/parallax-signal-hero-600.webp 600w, assets/images/parallax-signal-hero-1200.webp 1200w" sizes="(max-width: 560px) 280px, (max-width: 900px) 520px, 34vw" />
+          <img src="assets/images/parallax-signal-hero.png" width="1200" height="620" alt="" decoding="async" fetchpriority="high" />
+        </picture>
       </div>
     </section>
 
@@ -88,14 +120,17 @@
         </p>
       </div>
       <div class="parallax-intelligence-preview">
-        <img
-          src="assets/images/parallax-intelligence-layer-overview.png"
-          width="1600"
-          height="663"
-          alt="Parallax™ intelligence layer diagram showing a single prompt moving through multi-model reasoning, governed evaluation, and a unified response"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source type="image/webp" srcset="assets/images/parallax-intelligence-layer-overview-800.webp 800w, assets/images/parallax-intelligence-layer-overview-1600.webp 1600w" sizes="(max-width: 1120px) calc(100vw - 40px), 1080px" />
+          <img
+            src="assets/images/parallax-intelligence-layer-overview.png"
+            width="1600"
+            height="663"
+            alt="Parallax™ intelligence layer diagram showing a single prompt moving through multi-model reasoning, governed evaluation, and a unified response"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="parallax-surface-list" aria-label="Parallax platform surfaces">
         <article>
@@ -356,14 +391,17 @@
       </div>
       <div class="parallax-trust-layout">
         <figure class="parallax-fingerprint-visual">
-          <img
-            src="assets/images/parallax-fingerprint.png"
-            width="720"
-            height="1080"
-            alt="Fingerprint sketch representing proof-of-processing metadata and receipt verification"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source type="image/webp" srcset="assets/images/parallax-fingerprint-360.webp 360w, assets/images/parallax-fingerprint-720.webp 720w" sizes="(max-width: 560px) 260px, (max-width: 900px) 330px, 28vw" />
+            <img
+              src="assets/images/parallax-fingerprint.png"
+              width="720"
+              height="1080"
+              alt="Fingerprint sketch representing proof-of-processing metadata and receipt verification"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </figure>
         <div class="capability-list">
           <article class="capability-item">

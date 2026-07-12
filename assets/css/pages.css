@@ -382,6 +382,10 @@ sup {
   filter: contrast(1.05);
 }
 
+.page-hero-art picture {
+  display: contents;
+}
+
 .section {
   padding: clamp(58px, 8vw, 104px) clamp(20px, 5vw, 72px);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -459,6 +463,12 @@ sup {
   opacity: 0.38;
   filter: grayscale(1) contrast(1.12);
   mix-blend-mode: multiply;
+}
+
+.maestro-workspace-preview picture,
+.parallax-intelligence-preview picture,
+.parallax-fingerprint-visual picture {
+  display: block;
 }
 
 .capability-item,

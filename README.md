@@ -9,8 +9,9 @@ The public K MEANS AI site is a dependency-free static website published through
 - `assets/css/site.css` contains shared interaction, navigation, accessibility, and motion foundations.
 - `assets/css/home.css` contains home-page layout and the soccer easter egg presentation.
 - `assets/css/pages.css` contains the shared layout system for interior pages.
-- `assets/js/site-motion.js` contains progressive, reduced-motion-aware page animation behavior.
-- `assets/js/vendor/` contains the pinned Matter.js runtime and its license.
+- `assets/js/site-motion.js` contains shared navigation and progressive, reduced-motion-aware page animation behavior.
+- `assets/js/home-soccer.js` conditionally loads the one-time home-page soccer flourish when the visitor is eligible to see it.
+- `assets/js/vendor/` contains the pinned Matter.js runtime and its license; it is loaded only for that optional flourish.
 
 ## Local Preview
 
@@ -30,12 +31,13 @@ Run the dependency-free structural audit before publishing:
 node scripts/audit-site.mjs
 ```
 
-The audit verifies local links and fragments, image references and intrinsic dimensions, heading and ARIA targets, canonical metadata, external-link safety, sitemap routes, and image file signatures.
+The audit verifies local links and fragments, responsive image references and intrinsic dimensions, heading and ARIA targets, canonical and social metadata, structured data, external-link safety, sitemap routes, and image file signatures.
 
 ## Asset Guidelines
 
 - Keep public assets close to their maximum rendered size while allowing for high-density screens.
 - Use an extension that matches the asset's real file format.
 - Add intrinsic `width` and `height` to every rendered image.
+- Use responsive WebP sources in a `picture` element for large production images while retaining the original PNG fallback.
 - Lazy-load images that are below the first viewport.
 - Keep exploratory or source artwork out of production unless it is referenced by the site.

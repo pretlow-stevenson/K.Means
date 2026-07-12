@@ -428,6 +428,10 @@ sup {
   width: min(100%, 300px);
 }
 
+.suite-preview picture {
+  display: block;
+}
+
 .suite-preview img {
   display: block;
   width: 100%;

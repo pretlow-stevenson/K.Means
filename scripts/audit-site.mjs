@@ -14,6 +14,12 @@ const primaryPages = new Set([
   'parallax.html',
   'research.html'
 ]);
+const structuredPageEntities = new Map([
+  ['index.html', 'https://kmeans.ai/#organization'],
+  ['linguistic-bridge.html', 'https://kmeans.ai/linguistic-bridge.html#software'],
+  ['maestro.html', 'https://kmeans.ai/maestro.html#software'],
+  ['parallax.html', 'https://kmeans.ai/parallax.html#software']
+]);
 
 const walk = (directory) => {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -100,6 +106,27 @@ for (const file of htmlFiles) {
     if (!/<meta\b[^>]*property="og:title"/i.test(html) || !/<meta\b[^>]*property="og:url"/i.test(html)) {
       addIssue(file, 'missing Open Graph metadata');
     }
+
+    if (!/<meta\b[^>]*property="og:image"/i.test(html) || !/<meta\b[^>]*name="twitter:image"/i.test(html)) {
+      addIssue(file, 'missing social preview image metadata');
+    }
+
+    if (!/<meta\b[^>]*name="twitter:card"\s+content="summary_large_image"/i.test(html)) {
+      addIssue(file, 'social preview is not configured as a large image card');
+    }
+  }
+
+  const structuredEntity = structuredPageEntities.get(fileName);
+  if (structuredEntity && !html.includes(`"@id": "${structuredEntity}"`)) {
+    addIssue(file, `missing structured data entity: ${structuredEntity}`);
+  }
+
+  for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      JSON.parse(match[1]);
+    } catch {
+      addIssue(file, 'contains invalid JSON-LD');
+    }
   }
 
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -168,6 +195,23 @@ for (const file of htmlFiles) {
     }
   }
 
+  for (const match of html.matchAll(/<source\b([^>]*)>/gi)) {
+    const sourceSet = getAttribute(match[1], 'srcset');
+
+    if (!sourceSet) {
+      addIssue(file, 'responsive image source is missing srcset');
+      continue;
+    }
+
+    for (const candidate of sourceSet.split(',')) {
+      const value = candidate.trim().split(/\s+/, 1)[0];
+
+      if (value && !isExternal(value) && !fs.existsSync(resolveLocalPath(file, value))) {
+        addIssue(file, `missing responsive image: ${value}`);
+      }
+    }
+  }
+
   for (const match of html.matchAll(/<(?:a|link|script)\b([^>]*)>/gi)) {
     const attributes = match[1];
     const value = getAttribute(attributes, 'href') || getAttribute(attributes, 'src');
@@ -226,6 +270,14 @@ const imageSignatures = {
 for (const file of walk(path.join(root, 'assets', 'images'))) {
   const extension = path.extname(file).toLowerCase();
   const expectedSignature = imageSignatures[extension];
+
+  if (extension === '.webp') {
+    const signature = fs.readFileSync(file).subarray(0, 12);
+    if (signature.subarray(0, 4).toString('ascii') !== 'RIFF' || signature.subarray(8, 12).toString('ascii') !== 'WEBP') {
+      addIssue(file, 'file signature does not match .webp extension');
+    }
+    continue;
+  }
 
   if (!expectedSignature) {
     continue;

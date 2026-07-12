@@ -19,7 +19,36 @@
   <meta property="og:title" content="Symphony Maestro™ | Local Multi-Model Reasoning Workspace | K MEANS AI" />
   <meta property="og:description" content="A portable, provider-flexible command-line workspace for human-directed shared-context multi-model reasoning." />
   <meta property="og:url" content="https://kmeans.ai/maestro.html" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta name="twitter:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kmeans.ai/#organization",
+          "name": "K MEANS AI",
+          "url": "https://kmeans.ai/"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kmeans.ai/maestro.html#software",
+          "name": "Symphony Maestro",
+          "url": "https://kmeans.ai/maestro.html",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "macOS, Windows, Linux",
+          "description": "A local command-line workspace for portable, provider-flexible, human-directed shared-context multi-model reasoning through Linguistic Bridge.",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -30,9 +59,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=site-polish" />
-  <link rel="stylesheet" href="assets/css/pages.css?v=site-polish" />
-  <script defer src="assets/js/site-motion.js?v=site-polish"></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=polish-2" />
+  <link rel="stylesheet" href="assets/css/pages.css?v=polish-2" />
+  <script defer src="assets/js/site-motion.js?v=polish-2"></script>
 </head>
 
 <body>
@@ -73,7 +102,10 @@
         <a class="text-link page-hero-link" href="linguistic-bridge.html#demos">See Maestro™ in motion</a>
       </div>
       <div class="page-hero-art page-hero-sketch hero-art-maestro" aria-hidden="true">
-        <img src="assets/images/maestro-console-hero.png" width="1200" height="620" alt="" decoding="async" fetchpriority="high" />
+        <picture>
+          <source type="image/webp" srcset="assets/images/maestro-console-hero-600.webp 600w, assets/images/maestro-console-hero-1200.webp 1200w" sizes="(max-width: 560px) 280px, (max-width: 900px) 520px, 34vw" />
+          <img src="assets/images/maestro-console-hero.png" width="1200" height="620" alt="" decoding="async" fetchpriority="high" />
+        </picture>
       </div>
     </section>
 
@@ -90,14 +122,17 @@
         </p>
       </div>
       <a class="maestro-workspace-preview" href="linguistic-bridge.html#demos" aria-label="View Maestro™ demos">
-        <img
-          src="assets/images/maestro-console-window-actual.png"
-          width="2372"
-          height="1364"
-          alt="K Means AI Maestro™ terminal window showing the Maestro™ header, configured models, compact settings, documentation link, and a terminal prompt"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source type="image/webp" srcset="assets/images/maestro-console-window-actual-960.webp 960w, assets/images/maestro-console-window-actual-1920.webp 1920w" sizes="(max-width: 1000px) calc(100vw - 40px), 960px" />
+          <img
+            src="assets/images/maestro-console-window-actual.png"
+            width="2372"
+            height="1364"
+            alt="K Means AI Maestro™ terminal window showing the Maestro™ header, configured models, compact settings, documentation link, and a terminal prompt"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </a>
     </section>
 

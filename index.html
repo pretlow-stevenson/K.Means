@@ -19,7 +19,66 @@
   <meta property="og:title" content="K MEANS AI | Consensus Infrastructure for AI Systems" />
   <meta property="og:description" content="Shared-context multi-model reasoning systems, consensus infrastructure, and verifiable AI workflows." />
   <meta property="og:url" content="https://kmeans.ai/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kmeans.ai/assets/images/kmeans-social-card.png" />
+  <meta name="twitter:image:alt" content="K MEANS AI. Reliable reasoning systems for complex work." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kmeans.ai/#organization",
+          "name": "K MEANS AI",
+          "url": "https://kmeans.ai/",
+          "logo": "https://kmeans.ai/assets/images/kmeans-mark.png",
+          "email": "labs@kmeans.ai",
+          "sameAs": ["https://www.linkedin.com/company/kmeansai"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://kmeans.ai/#website",
+          "url": "https://kmeans.ai/",
+          "name": "K MEANS AI",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kmeans.ai/parallax.html#software",
+          "name": "Symphony Parallax",
+          "url": "https://kmeans.ai/parallax.html",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Cloud",
+          "description": "An API-first cloud-scale consensus engine for governed multi-model reasoning, frontier-model evaluation, shared-context deliberation, and traceable workflows.",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kmeans.ai/maestro.html#software",
+          "name": "Symphony Maestro",
+          "url": "https://kmeans.ai/maestro.html",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "macOS, Windows, Linux",
+          "description": "A local command-line workspace for provider-flexible, human-directed shared-context multi-model reasoning.",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kmeans.ai/linguistic-bridge.html#software",
+          "name": "Linguistic Bridge",
+          "url": "https://kmeans.ai/linguistic-bridge.html",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Cloud, macOS, Windows, Linux",
+          "description": "A shared-context orchestration protocol that coordinates N-model reasoning across native and OpenAI-compatible provider integrations.",
+          "publisher": { "@id": "https://kmeans.ai/#organization" }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVW5RY02RQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -31,10 +90,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400&amp;family=Inter:wght@400;500;600&amp;display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=site-polish" />
-  <link rel="stylesheet" href="assets/css/home.css?v=site-polish" />
-  <script defer src="assets/js/vendor/matter.min.js?v=0.20.0"></script>
-  <script defer src="assets/js/site-motion.js?v=site-polish"></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=polish-2" />
+  <link rel="stylesheet" href="assets/css/home.css?v=polish-2" />
+  <script defer src="assets/js/site-motion.js?v=polish-2"></script>
+  <script defer src="assets/js/home-soccer.js?v=polish-2"></script>
 </head>
 
 <body>
@@ -133,14 +192,17 @@
                 <a class="text-link section-link" href="maestro.html">Learn about Maestro™</a>
                 <a class="text-link section-link" href="linguistic-bridge.html#demos">View Maestro™ demos</a>
                 <a class="suite-preview" href="maestro.html" aria-label="View Symphony Maestro™ recorded examples">
-                  <img
-                    src="assets/images/maestro-light-preview.png"
-                    width="640"
-                    height="426"
-                    alt="Symphony Maestro™ terminal workspace showing multi-model reasoning output"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <picture>
+                    <source type="image/webp" srcset="assets/images/maestro-light-preview-320.webp 320w, assets/images/maestro-light-preview-640.webp 640w" sizes="(max-width: 560px) 280px, 300px" />
+                    <img
+                      src="assets/images/maestro-light-preview.png"
+                      width="640"
+                      height="426"
+                      alt="Symphony Maestro™ terminal workspace showing multi-model reasoning output"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </a>
               </div>
             </article>
@@ -169,14 +231,17 @@
               <div class="section-actions suite-actions-with-preview" aria-label="Parallax™ links">
                 <a class="text-link section-link" href="parallax.html">Learn about Parallax™</a>
                 <a class="suite-preview" href="parallax.html" aria-label="Learn about Parallax™">
-                  <img
-                    src="assets/images/parallax-preview.png"
-                    width="640"
-                    height="426"
-                    alt="Parallax™ product mark on a dark field"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <picture>
+                    <source type="image/webp" srcset="assets/images/parallax-preview-320.webp 320w, assets/images/parallax-preview-640.webp 640w" sizes="(max-width: 560px) 280px, 300px" />
+                    <img
+                      src="assets/images/parallax-preview.png"
+                      width="640"
+                      height="426"
+                      alt="Parallax™ product mark on a dark field"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </a>
               </div>
             </article>
