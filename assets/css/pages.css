@@ -497,8 +497,146 @@ sup {
   overflow-wrap: anywhere;
 }
 
-.maestro-workspace-section .section-heading {
+.maestro-product-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) minmax(150px, 175px);
+  gap: 0;
+  align-items: end;
+  width: min(100%, 895px);
   margin-bottom: clamp(22px, 4vw, 34px);
+}
+
+.maestro-workspace-section .section-heading {
+  margin-bottom: 0;
+}
+
+.maestro-product-pet {
+  position: relative;
+  width: clamp(150px, 14vw, 175px);
+  aspect-ratio: 0.94;
+  margin: 0 0 0 -8px;
+  overflow: hidden;
+  isolation: isolate;
+  justify-self: start;
+}
+
+.maestro-baton-spark {
+  position: absolute;
+  top: 15.2%;
+  left: 7.1%;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.maestro-baton-spark::before,
+.maestro-baton-spark::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+}
+
+.maestro-baton-spark::before {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 12%, #d7c7f5 22%, #a990de 42%, rgba(169, 144, 222, 0.16) 64%, transparent 74%);
+  box-shadow: 0 0 8px rgba(169, 144, 222, 0.72);
+  opacity: 0.48;
+  transform: translate(-50%, -50%);
+}
+
+.maestro-baton-spark::after {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    -12px -6px 0 rgba(215, 199, 245, 0.9),
+    11px -8px 0 rgba(169, 144, 222, 0.78),
+    13px 5px 0 rgba(232, 222, 250, 0.86),
+    -9px 10px 0 rgba(169, 144, 222, 0.68);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.maestro-baton-spark i {
+  --spark-angle: 0deg;
+  --spark-length: 10px;
+  --spark-delay: 0s;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 0.75px);
+  width: 1.5px;
+  height: var(--spark-length);
+  border-radius: 999px;
+  background: linear-gradient(to bottom, #fff, #d7c7f5 34%, #a990de 68%, transparent);
+  opacity: 0;
+  transform: rotate(var(--spark-angle)) translateY(-2px);
+  transform-origin: 50% 0;
+}
+
+.maestro-baton-spark i:nth-child(1) { --spark-angle: 0deg; --spark-length: 12px; --spark-delay: 0.02s; }
+.maestro-baton-spark i:nth-child(2) { --spark-angle: 43deg; --spark-length: 8px; --spark-delay: 0.14s; }
+.maestro-baton-spark i:nth-child(3) { --spark-angle: 88deg; --spark-length: 13px; --spark-delay: 0.06s; }
+.maestro-baton-spark i:nth-child(4) { --spark-angle: 134deg; --spark-length: 7px; --spark-delay: 0.2s; }
+.maestro-baton-spark i:nth-child(5) { --spark-angle: 181deg; --spark-length: 11px; --spark-delay: 0.1s; }
+.maestro-baton-spark i:nth-child(6) { --spark-angle: 226deg; --spark-length: 9px; --spark-delay: 0.03s; }
+.maestro-baton-spark i:nth-child(7) { --spark-angle: 273deg; --spark-length: 12px; --spark-delay: 0.17s; }
+.maestro-baton-spark i:nth-child(8) { --spark-angle: 318deg; --spark-length: 8px; --spark-delay: 0.08s; }
+
+.maestro-workspace-section.is-visible .maestro-baton-spark::before {
+  animation: maestro-spark-core 2.4s ease-in-out forwards;
+}
+
+.maestro-workspace-section.is-visible .maestro-baton-spark::after {
+  animation: maestro-spark-particles 2.2s steps(3, end) forwards;
+}
+
+.maestro-workspace-section.is-visible .maestro-baton-spark i {
+  animation: maestro-spark-ray 2.1s ease-in-out var(--spark-delay) forwards;
+}
+
+@keyframes maestro-spark-core {
+  0% { opacity: 0.48; transform: translate(-50%, -50%) scale(0.66); }
+  12% { opacity: 1; transform: translate(-50%, -50%) scale(1.18); }
+  24% { opacity: 0.62; transform: translate(-50%, -50%) scale(0.82); }
+  42% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  58% { opacity: 0.56; transform: translate(-50%, -50%) scale(0.72); }
+  74% { opacity: 0.94; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0.48; transform: translate(-50%, -50%) scale(0.66); }
+}
+
+@keyframes maestro-spark-particles {
+  0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.82); }
+  18% { opacity: 0.92; transform: translate(-50%, -50%) scale(1.08); }
+  46% { opacity: 0.28; transform: translate(-50%, -50%) scale(0.9); }
+  68% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.12); }
+  86% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.92); }
+}
+
+@keyframes maestro-spark-ray {
+  0%, 100% { opacity: 0; }
+  14% { opacity: 0.88; }
+  28% { opacity: 0.2; }
+  44% { opacity: 1; }
+  62% { opacity: 0.32; }
+  78% { opacity: 0.82; }
+  91% { opacity: 0.14; }
+}
+
+.maestro-product-pet picture {
+  display: block;
+}
+
+.maestro-product-pet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-12.3%);
 }
 
 .maestro-workspace-preview {
@@ -843,6 +981,17 @@ sup {
     object-fit: contain;
   }
 
+  .maestro-product-intro {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .maestro-product-pet {
+    width: 160px;
+    margin-left: 0;
+    justify-self: center;
+  }
+
   .recording-actions {
     align-items: flex-start;
     flex-direction: column;
@@ -928,6 +1077,10 @@ sup {
 
   .page-hero-sketch img {
     max-width: 280px;
+  }
+
+  .maestro-product-pet {
+    width: 145px;
   }
 
   .parallax-fingerprint-visual {
