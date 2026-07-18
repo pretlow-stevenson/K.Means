@@ -499,7 +499,7 @@ sup {
 
 .maestro-product-intro {
   display: grid;
-  grid-template-columns: minmax(0, 720px) minmax(150px, 175px);
+  grid-template-columns: minmax(0, 720px) minmax(116px, 135px);
   gap: 0;
   align-items: end;
   width: min(100%, 895px);
@@ -512,9 +512,9 @@ sup {
 
 .maestro-product-pet {
   position: relative;
-  width: clamp(150px, 14vw, 175px);
-  aspect-ratio: 0.94;
-  margin: 0 0 0 -8px;
+  width: clamp(116px, 10.5vw, 135px);
+  aspect-ratio: 1.1;
+  margin: 0 0 0 -6px;
   overflow: hidden;
   isolation: isolate;
   justify-self: start;
@@ -522,13 +522,13 @@ sup {
 
 .maestro-baton-spark {
   position: absolute;
-  top: 15.2%;
-  left: 7.1%;
+  top: 22.5%;
+  left: 11.8%;
   z-index: 2;
   width: 30px;
   height: 30px;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.75);
 }
 
 .maestro-baton-spark::before,
@@ -636,7 +636,7 @@ sup {
   display: block;
   width: 100%;
   height: auto;
-  transform: translateY(-12.3%);
+  transform: translateY(-4.6%);
 }
 
 .maestro-workspace-preview {
@@ -987,7 +987,7 @@ sup {
   }
 
   .maestro-product-pet {
-    width: 160px;
+    width: 124px;
     margin-left: 0;
     justify-self: center;
   }
@@ -1080,7 +1080,7 @@ sup {
   }
 
   .maestro-product-pet {
-    width: 145px;
+    width: 113px;
   }
 
   .parallax-fingerprint-visual {
