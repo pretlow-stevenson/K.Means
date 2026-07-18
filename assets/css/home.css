@@ -311,9 +311,8 @@ sup {
 }
 
 .suite-feature-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
+  display: grid;
+  gap: 6px;
   margin: 16px 0 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.48);
@@ -323,6 +322,22 @@ sup {
   line-height: 1.55;
   list-style: none;
   text-transform: uppercase;
+}
+
+.suite-feature-list li {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.suite-feature-list li::before {
+  width: 8px;
+  height: 1px;
+  margin-top: 0.72em;
+  background: currentColor;
+  content: "";
+  opacity: 0.58;
 }
 
 .suite-item .section-actions {
